@@ -1,6 +1,6 @@
 #  This  page is goin to be a personal page to show my work 
 ## i goin to use Django + react 
-###this page have to contain
+### this page have to contain
   1. my proyects complete / incomplete
   2. my update state
   3. One about me
