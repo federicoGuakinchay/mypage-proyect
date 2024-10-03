@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import os
+import environ
+
+# Initialize environment variables
+env = environ.Env()  
+# Take environment variables from .env file
+environ.Env.read_env('.env')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,18 +27,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aj29*k^0+sxbhid*-gm=skp%9knputw4ufqp7azs38%ke(8wj6'
+# SECRET_KEY save by environ 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG save by environ 
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
+
+# ALLOWED_HOSTS save by environ 
+
+ALLOWED_HOSTS=[os.environ.get('ALLOWED_HOSTS_DEV')]    # to develop
 
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,8 +49,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+PROJECT_APPS=[]
+THIRD_PARTY_APPS=[
+    'corsheaders',
+    'rest_framework',
+    
+]
+# All apps
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+
+# MIDDLEWARE
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +78,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'static', 'dist'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,21 +127,58 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
+# I goin to made This page in Englis for default 
+# But whit the time i goin to change make a for the  client  
+
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Use this for serving the static files in production
+STATIC_URL = '/static/'  # Make sure this has a forward slash
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where Django collects static files for production
+
+# This is where your Vite build output will live
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static', 'dist'),  # Vite output will be here
+]
+
+# Media files configuration
+MEDIA_URL = '/media/'  # Access media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Vite's manifest file location, used by Django to load the correct hashed assets
+VITE_MANIFEST_PATH = os.path.join(BASE_DIR, 'static', 'dist', 'manifest.json')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
+CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEV')
+CSRF_TRUSTED_ORIGIND = env.list('CSRF_TRUSTED_ORIGIND_DEV')
+
+EMAIL_BACKEND = 'django.coro.mail.backends.console.EmailBackend'
+
+# To Production 
+
+if not DEBUG:                                   
+    ALLOWED_HOSTS= env.list('ALLOWED_HOSTS_PROD')
+    CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_PROD')
+    CSRF_TRUSTED_ORIGIND = env.list('CSRF_TRUSTED_ORIGIND_PROD')
+    
+    DATABASES = {
+        'default': env.db("DATABASES_URL"),
+    }
+    DATABASES['default']["ATOMIC_REQUESTS"] = True
