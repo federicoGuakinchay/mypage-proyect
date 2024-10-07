@@ -1,0 +1,82 @@
+:root {
+  --back-principal: #eee;
+  --back-secundary:#ccc;
+  --text-principal:#242424;
+  --text-secundary: #555;
+  --nav-back:#eeeeeee7;
+  --logo-color1:#fff;
+  --logo-color2:#000;
+  --button-back:#a1a1a1;
+  --button-hover:#f00;
+  --nav-heigt: 5rem;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[data-theme="dark"]{
+  --back-principal:#242424;
+  --back-secundary:#343434;
+  --text-principal: #eee;
+  --text-secundary: #ccc;
+  --nav-back:#242424fc;
+  --logo-color1:#000;
+  --logo-color2:#fff;
+  --button-back: #1a1a1a;
+  --button-hover:#646cff;
+}
+a{
+  color:var(--text-principal) ;
+}
+
+body {
+  scroll-timeline: --body block;
+  margin: 0;
+  width: clamp(200px, 100%, 100%);
+  min-height: 200vh;
+  color: var(--text-principal);
+  background-color: var(--back-principal);
+  transition: background-color .5s;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  text-wrap: nowrap;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-back);
+  color: var(--text-principal);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  
+}
+button:hover {
+  border-color: var(--button-hover);
+}
+button:focus,
+button:focus-visible {
+  outline: 2px auto -webkit-focus-ring-color;
+}
+
+
+.footer{
+  display: flex;
+  background-color: var(--back-secundary);
+  color: var(--text-secundary);
+}
+.main-content{
+  height: 100vh;
+}
+a{text-decoration: none;}
