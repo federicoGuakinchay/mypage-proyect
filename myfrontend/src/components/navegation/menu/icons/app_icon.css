@@ -1,0 +1,47 @@
+/* nav logo - site name   //only another one developer// */
+.navbar-title-container{
+  width: 170px;
+  height: 100%;
+  position: relative;
+  top: -7px;
+}
+.navbar-title{
+  display: block;
+  box-sizing: content-box;
+  width: 64px;
+  height: 62px;
+  &:hover{
+    .nav-title-box2{
+      width: 160px;
+      color: var(--logo-color1);
+    }
+  }
+}
+.nav-title-box1,.nav-title-box2{    
+  line-height: 0;
+  font-family: cursive;
+  text-decoration: none;
+  padding: 7px;
+  width: 50px;
+  border-radius: 25px;
+}
+.nav-title-box1{
+  padding: 7px;
+  width: 50px;
+  border-radius: 25px;
+  background-color: var(--logo-color1);
+  position: relative;
+  z-index: 100;
+  text-align: center;
+}
+
+.nav-title-box2{
+  position: relative;
+  top: -62px;
+  left: -5px;
+  background-color: var(--logo-color2);
+  color: var(--logo-color2);
+  overflow: hidden;
+  text-align: right;
+  transition: all 1s;
+}

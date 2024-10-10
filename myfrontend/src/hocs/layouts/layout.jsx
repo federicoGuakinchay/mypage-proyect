@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 function Layout( { children } ){
   return(
-    <div>
+    <div className="layout">
       {children}
     </div>
   )

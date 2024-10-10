@@ -1,8 +1,8 @@
 //have to change this and put it in the navBar
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import argL from '../../../../assets/images/flag/arg/mid.webp' 
-import usL from '../../../../assets/images/flag/us/mid.webp' 
+import argL from '../../../../assets/images/flag/arg/litle.webp' 
+import usL from '../../../../assets/images/flag/us/litle.webp' 
 function LanguageChange () {
   const { i18n } = useTranslation();
   const changeLanguage = (lang) => {

@@ -21,7 +21,7 @@ function ThemeToggle() {
   }, [theme]); // Only re-turn the effect when theme changes
   //change  d and l for svg 
   return (
-    <div>
+    <div className="toggle-theme-container">
       <button onClick={toggleTheme} className="theme-button">
         {theme === 'light' ? 'L' : 'D'}
       </button>
