@@ -1,6 +1,6 @@
 .nav-site{ font-size: xx-large;}
 .main-content{
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,6 +32,7 @@ ul.container-services li {
 }
 ul.container-services{
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   list-style: none;
   flex-grow: 1;
@@ -59,6 +60,21 @@ ul.container-services{
     height: 180px;
   }
 }
+
+.social-media-conteiner{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.social-media-ico{
+  transition: fill .5s;
+  fill: var(--text-principal);
+  &:hover{
+    transition: fill .5s;
+    fill: var(--button-hover);
+  }
+}
+
 @media screen and (max-width: 420px){
   .main-content{padding:1%; }
   .type-writer{

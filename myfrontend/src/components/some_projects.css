@@ -1,0 +1,109 @@
+.some-proyects{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.some-proyects__title{
+  font-size: 35px;
+  color: var(--button-hover);
+  padding-left: 80px;
+}
+.some-proyects__carousel{ padding: 15px; }
+.carousel__button{
+  position: absolute;
+  top: 230px;
+  left: 1%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  z-index: 1;
+  opacity: 0.5;
+  transition: opacity 1s ;
+  display: flex;
+  align-items: center;
+  svg{fill: var(--button-hover);}
+  &:hover{
+    transition: opacity 1s;
+    opacity: 1;
+  }
+}
+.carousel__button__right{
+  left: calc(99% - 80px);
+  rotate: 180deg;
+}
+
+.some-proyects__container{
+  padding-left: 15px;
+  position: relative;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  transition: left 1s;
+}
+.some-proyects__card{
+  flex-shrink: 0;
+  padding: 15px;
+  width: calc(50% - 53px);
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  overflow: hidden;
+  transition: box-shadow 1s;
+  cursor: pointer;
+  &:hover{
+    transition: box-shadow 1s;
+    box-shadow: 0 0 20px 0 black;
+  }
+  &:active{
+    transition: box-shadow 1s;
+    box-shadow: inset 0 0 20px 0 black;
+  }
+}
+.some-proyects__card__title{
+  margin: 0;
+  padding: 0 20px 20px 20px;
+  text-align: center;
+  transition: color 1s;
+}
+.some-proyects__card__img__content{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 25px;
+}
+.some-proyects__card__img{
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  transition: transform 1s;
+  transform: scale(1.2);
+  /*  delete and change the img is not mine  */
+}
+.some-proyects__card__categories__container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 0 5%;
+  align-content: center;
+  justify-content: center;
+}
+.some-proyects__card__categories{
+  margin: 0;
+}
+.proy1,.proy2,.proy3,.proy4,.proy5,.proy6,.proy7,.proy8,.proy9,.proy10{
+  &:hover{ 
+    .some-proyects__card__img{transform: scale(1); transition: transform 1s;}
+    .some-proyects__card__title{color: var(--button-hover);transition: color 1s;}}}
+
+@media screen  and (max-width: 700px) {
+  .some-proyects__card{
+  width: calc(100% - 45px);
+}}

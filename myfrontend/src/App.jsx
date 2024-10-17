@@ -1,9 +1,13 @@
 import {BrowserRouter as Router , Route ,Routes} from 'react-router-dom'
 /*import { ToastContainer } from 'react-toastify';*/
-import  Home  from './containers/pages/home'
 import Error404 from './containers/errors/404';
-import navbar from './components/navegation/navbar';
-
+import  Home  from './containers/pages/home'
+import Proyects from './containers/pages/project';
+import Technologies from './containers/pages/technologies';
+import Blog from './containers/pages/blog';
+import About from './containers/pages/about';
+import Contact from './containers/pages/contact';
+import Hire from './containers/pages/hire';
 
 function App() {
   return (
@@ -14,7 +18,18 @@ function App() {
           <Route path="*" element={<Error404 />} />
           {/*Home Page*/}
           <Route path="/" element={<Home />} />
-          {/*Home Page*/}
+          {/*Projects Page*/}
+          <Route path="/projects" element={<Proyects />} />
+          {/*Technologie Page*/}
+          <Route path="/technologies" element={<Technologies />} />
+          {/*Blog Page*/}
+          <Route path="/Blog" element={<Blog />} />
+          {/*About Page*/}
+          <Route path="/About" element={<About />} />
+          {/*Contact Page*/}
+          <Route path="/Contact" element={<Contact />} />
+          {/*Hire Page*/}
+          <Route path="/Hire" element={<Hire />} />
         </Routes>
       </Router>
     </>

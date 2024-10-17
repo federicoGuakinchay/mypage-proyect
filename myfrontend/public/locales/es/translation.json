@@ -1,4 +1,23 @@
 {
-  "welcome": "Bienvenido",
-  "language": "Cambiar idioma"
+  "language": "cambiar idioma",
+  "link-home":"Inicio",
+  "link-proyects":"proyectos",
+  "link-tecnologies":"tecnologias",
+  "link-about":"sobre mi",
+  "link-contact":"contacto",
+  "link-hire":"contratar",
+  "link-cookie":"politica de cookies",
+  "link-privacy":"politica de privacy",
+  "here-footer":"estas aqui",
+  "NAY":"No disponible aun",
+  "pre-footer-text-1":"Agamos algo de arte",
+  "pre-footer-text-2":"Empecemos",
+  "site":"sitio",
+  "phone":"telefono",
+  "this":"esta pagina",
+  "follow":"sigueme",
+  "reasons-title":"Por que yo sobre otros desarrolladores?",
+  "reasons-text-1":"yo soy un nuevo programador full-stack con muchas ganas de hacerme con una buena reputacion como desarrollador.",
+  "some_proyects":"algunos de mis proyectos",
+  "":""
 }

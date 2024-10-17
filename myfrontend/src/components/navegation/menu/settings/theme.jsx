@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { MdLightMode , MdNightlight } from "react-icons/md"
 
 function ThemeToggle() {
   // Get the initial theme from localStorage or default to 'light'
@@ -23,7 +24,7 @@ function ThemeToggle() {
   return (
     <div className="toggle-theme-container">
       <button onClick={toggleTheme} className="theme-button">
-        {theme === 'light' ? 'L' : 'D'}
+        {theme === 'light' ? <MdLightMode size={25}/> : <MdNightlight size={25}/>}
       </button>
     </div>
   );

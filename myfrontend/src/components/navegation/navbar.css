@@ -48,7 +48,7 @@ nav{
 /* links styles */
 .nav-item-container{
   display: flex;
-  gap: 20px;
+  gap: 14px;
   list-style: none;
   flex-grow: 1;
   margin: 0;
@@ -73,13 +73,24 @@ nav{
   }
 }
 
-/* hire me button */
+/* theme button */
 .theme-button{
   border-radius: 50px;
   width: 60px;
   height: 60px;
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-principal);
+  &:hover{
+    color: var(--button-hover);
+    svg{
+      filter: drop-shadow(1px 1px 10px var(--button-hover));
+    }
+  }
 }
-
+/* hire me button */
 .nav-button-item{
   display: flex;
   flex-wrap: nowrap;
@@ -123,7 +134,7 @@ nav{
 }
 /* movile styles*/
 .menu-movile{visibility: hidden;}
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 800px) {
   nav{ padding: 1rem 10%;}
   .nav-item-container{display: none;}
   .nav-site{font-size: 50px;}

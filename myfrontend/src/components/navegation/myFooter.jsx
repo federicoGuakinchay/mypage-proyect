@@ -2,6 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux"
 import AppIcon from "./menu/icons/app_icon";
 import './footer.css'
+import Language from "../../language.jsx";
 
 function MyFooter(){
   const [menuIsOpen1, setMenuIsOpen1] = useState(false);
@@ -16,91 +17,101 @@ function MyFooter(){
   const toggleMenu3 = () => {
     setMenuIsOpen3(prevState => !prevState); // Toggle the state between true/false
   };
-  
+  const here  = <Language value="here-footer" />;
+  const nay =<Language value={"NAY"}/>
   return (
-    <div className="footer">
-      <div className="footer-details-content">
-        <div className="footer-app-icon-content">
-          <AppIcon/>
-        </div>
-        <div className="page-details">
-          <div onClick={toggleMenu1} className={`details-content ${menuIsOpen1 ? 'expand-menu-contact':''}`}>
-            
-            <div className="details-title">contact 
-              <div className="svg-deployment-menu">
-                <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px"       fill="#e8eaed" className={menuIsOpen1 ? 'svg-open-footer':'svg-close-footer'}>
+    <div className="footer-container">
+      <div className="endleyend">
+        <h3 ><Language value={"pre-footer-text-1"}/></h3>
+        <h3 ><a href=""><Language value={"pre-footer-text-2"}/></a></h3>
+      </div>
+      <div className="footer">
+        <div className="footer-details-content">
+          <div className="footer-app-icon-content">
+            <AppIcon/>
+          </div>
+          <div className="page-details">
+            <div onClick={toggleMenu1} className={`details-content ${menuIsOpen1 ? 'expand-menu-contact':''}`}>
+
+              <div className="details-title"><Language value={"link-contact"}/> 
+                <div className="svg-deployment-menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px"       fill="#e8eaed" className={menuIsOpen1 ? 'svg-open-footer':'svg-close-footer'}>
+                    <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <ul>
+                <li>Mendoza Argentina</li>
+                <li>Godoy Cruz</li>
+                <li className="sub-titlie-contact"><Language value={"site"}/> </li>
+                <li>{nay}</li>
+                <li className="sub-titlie-contact">mail</li>
+                <li>
+                  <a href="" className="details-link-item" >{nay} <span></span></a>
+                </li>
+                <li className="sub-titlie-contact"><Language value={"phone"}/> </li>
+                <li>{nay}</li>
+              </ul>
+            </div>
+
+            <div onClick={toggleMenu2} className={`details-content ${menuIsOpen2 ? 'expand-menu-this-page':''}`}>
+              <div className="details-title"><Language value={"this"}/>
+                <svg xmlns="http://www.w3.org/2000/svg"  height="60px" viewBox="0 -960 960 960" width="60px" fill="#e8eaed" className={menuIsOpen2 ? 'svg-open-footer':'svg-close-footer'}>
                   <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/>
                 </svg>
               </div>
-            </div>
-            
-            <ul>
-              <li>Mendoza</li>
-              <li>not avail local yet</li>
-              <li>
-                <a href="" className="details-link-item" >client@mail.com <span></span></a>
-              </li>
-              <li>phone</li>
-              <li>not avail phone yet</li>
-            </ul>
-          </div>
 
-          <div onClick={toggleMenu2} className={`details-content ${menuIsOpen2 ? 'expand-menu-this-page':''}`}>
-            <div className="details-title">this page 
-              <svg xmlns="http://www.w3.org/2000/svg"  height="60px" viewBox="0 -960 960 960" width="60px" fill="#e8eaed" className={menuIsOpen2 ? 'svg-open-footer':'svg-close-footer'}>
-                <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/>
-              </svg>
+              <ul>
+                <li>
+                  <div tabIndex="0" role='button' className='details-link-item'>   <Language value={"link-home"}/>   <div></div> <span></span></div>
+                  <div className={`${document.URL==='http://localhost:5173/' ? 'here-footer': 'not-here-footer' }`}>{here}</div>
+                </li>
+                <li>
+                  <div  tabIndex="0" role='button' className='details-link-item'>   <Language value={"link-proyects"}/>   <div></div> <span></span></div>
+                  <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>{here}</div>
+                </li>
+                <li>
+                  <div tabIndex="0" role='button' className='details-link-item'>  <Language value={"link-tecnologies"}/> <div></div> <span></span></div>
+                  <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>{here}</div>
+                </li>
+                <li>
+                  <div tabIndex="0" role='button' className='details-link-item'>     blog     <div></div> <span></span></div>
+                  <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>{here}</div>
+                </li>
+                <li>
+                  <div tabIndex="0" role='button' className='details-link-item'>    <Language value={"link-about"}/>   <div></div> <span></span></div>
+                  <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>{here}</div>
+                </li>
+                <li>
+                  <div tabIndex="0" role='button' className='details-link-item'>    <Language value={"link-contact"}/>   <span></span></div>
+                  <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>{here}</div>
+                </li>
+              </ul>
             </div>
-            
-            <ul>
-              <li>
-                <a href="" className='details-link-item'>   Home   <div></div> <span></span></a>
-                <div className={`${document.URL==='http://localhost:5173/' ? 'here-footer': 'not-here-footer' }`}>you`re here</div>
-              </li>
-              <li>
-                <a href="" className='details-link-item'>   Proyects   <div></div> <span></span></a>
-                <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>you`re here</div>
-              </li>
-              <li>
-                <a href="" className='details-link-item'>  Tecnologies <div></div> <span></span></a>
-                <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>you`re here</div>
-              </li>
-              <li>
-                <a href="" className='details-link-item'>     blog     <div></div> <span></span></a>
-                <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>you`re here</div>
-              </li>
-              <li>
-                <a href="" className='details-link-item'>    about   <div></div> <span></span></a>
-                <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>you`re here</div>
-              </li>
-              <li>
-                <a href="" className='details-link-item'>    contact    <span></span></a>
-                <div className={`${document.URL==='' ? 'here-footer': 'not-here-footer' }`}>you`re here</div>
-              </li>
-            </ul>
-          </div>
-          <div onClick={toggleMenu3} className={`details-content ${menuIsOpen3 ? 'expand-menu-follow':''}`}>
-            <div className="details-title">follow 
-              <svg xmlns="http://www.w3.org/2000/svg" height="60px" className={menuIsOpen3 ? 'svg-open-footer':'svg-close-footer'} viewBox="0 -960 960 960" width="60px" fill="#e8eaed">
-                <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/>
-              </svg>
+            <div onClick={toggleMenu3} className={`details-content ${menuIsOpen3 ? 'expand-menu-follow':''}`}>
+              <div className="details-title"><Language value={"follow"}/>
+                <svg xmlns="http://www.w3.org/2000/svg" height="60px" className={menuIsOpen3 ? 'svg-open-footer':'svg-close-footer'} viewBox="0 -960 960 960" width="60px" fill="#e8eaed">
+                  <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/>
+                </svg>
+              </div>
+              <ul >
+                <li><div tabIndex="0" role='button' className="details-link-item" >facebbok   <span></span></div></li>
+                <li><div tabIndex="0" role='button' className="details-link-item" >instagram  <span></span></div></li>
+                <li><div tabIndex="0" role='button' className="details-link-item" >twitter    <span></span></div></li>
+                <li><div tabIndex="0" role='button' className="details-link-item" >LinkedIn   <span></span></div></li>
+                <li><div tabIndex="0" role='button' className="details-link-item" >Git-Hub    <span></span></div></li>
+              </ul>
             </div>
-            <ul >
-              <li><a href="" className="details-link-item" >facebbok   <span></span></a></li>
-              <li><a href="" className="details-link-item" >instagram  <span></span></a></li>
-              <li><a href="" className="details-link-item" >twitter    <span></span></a></li>
-              <li><a href="" className="details-link-item" >LinkedIn   <span></span></a></li>
-              <li><a href="" className="details-link-item" >Git-Hub    <span></span></a></li>
-            </ul>
           </div>
         </div>
+        <div className="footer-policy">
+          <div className="footer-policy-cookie"  tabIndex="0" role='button'> <Language value={"link-cookie"}/> </div>
+          <div className="footer-policy-privacy" tabIndex="0" role='button'> <Language value={"link-privacy"}/></div>
+          <p className="footer-policy-copy" > Copyright ©  Federico Guakinchay. All Rights reserver.  </p>
+        </div>
+        <p className="my-work"> Digital Productions </p>
       </div>
-      <div className="footer-policy">
-        <a className="footer-policy-cookie" >Cookie Policy</a>
-        <a className="footer-policy-privacy" >Privacy Policy</a>
-        <p className="footer-policy-copy" > Copyright ©  Federico Guakinchay. All Rights reserver.  </p>
-      </div>
-      <p className="my-work"> Digital Productions </p>
     </div>
   )
   

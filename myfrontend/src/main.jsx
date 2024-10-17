@@ -6,8 +6,6 @@ import { Provider } from 'react-redux'
 import store from './store'
 import './i18n';
 import React from 'react'
-
-import Lenguage from './lenguage.jsx'
 //<h2> <Lenguage value={'welcome'}/> </h2>
 //<h2> <Lenguage value={'hello'}/> </h2>
 //<App />

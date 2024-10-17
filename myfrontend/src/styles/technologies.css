@@ -1,0 +1,22 @@
+.technologies-section{
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  font-size: 21px;
+}
+.techonologie-content{
+  display:flex;
+  gap: 15px;
+  background-color: var(--back-secundary);
+}
+.techonologie-title-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.technologie-title{
+  color: var(--button-hover);
+}
+.technologie-description{
+  text-wrap: pretty;
+}

@@ -1,5 +1,32 @@
 
 /* footer */
+.footer-container{
+  height: calc(100vh - var(--nav-heigt) );
+  display: flex;
+  flex-direction: column;
+}
+.endleyend{
+  width: 100%;
+  display: flex;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  h3{
+    height: min-content;
+    margin: 0;
+    font-size: 2rem;
+    a{
+      transition: color .5s;
+      color:var(--button-hover);
+      &:hover{color: #666;}
+    }
+  }
+}
+
+
 .footer{
   position: relative;
   z-index: 50;
@@ -54,6 +81,7 @@
   }
 }
 .details-link-item{
+  cursor: pointer;
   text-wrap: nowrap;
   text-decoration: none;
   display: block;
@@ -67,7 +95,7 @@
   font-size: 14px;
   margin-left: 25px;
   border-radius: 25px;
-  padding: 0px 10px;
+  padding: 3px 10px;
   width: 100px;
   height: 100%;
   background-color: var(--text-principal);
@@ -76,6 +104,7 @@
   cursor: default;
   display: initial;
   text-align: center;
+  font-weight: 600;
 }
 .not-here-footer{display: none;}
 .footer-policy{
@@ -88,7 +117,6 @@
   cursor: pointer; 
   color: var(--text-secundary);
   &:hover{color: var(--text-principal);}
-  &:focus,&:focus-visible{ outline: auto;}
   order: 2;
 }
 .footer-policy-copy{
@@ -102,6 +130,7 @@
   color: gray;
   cursor: default;
 }
+.sub-titlie-contact{ font-weight: 500;}
 
 .svg-close-footer,.svg-open-footer{display: none;fill: var(--text-principal);}
 
@@ -164,10 +193,10 @@
     transition: all 1s;
   }
   .expand-menu-contact{
-    height:  260px;
+    height: 370px;
   }
   .expand-menu-this-page{
-    height:  290px;
+    height:  300px;
   }
   .expand-menu-follow{
     height:  220px;
