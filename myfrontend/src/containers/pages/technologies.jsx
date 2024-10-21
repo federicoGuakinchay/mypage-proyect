@@ -3,12 +3,13 @@ import Language from "../../language";
 import Layout from "../../hocs/layouts/layout"
 import { IconContext } from "react-icons";
 // Icons (React of  Icons)
-import { SiFacebook , SiArduino , SiDjango , SiVite , SiSqlite } from "react-icons/si";
+import { SiFacebook , SiArduino , SiDjango , SiVite , SiSqlite , SiOctave } from "react-icons/si";
 import { RiInstagramFill } from "react-icons/ri";
 import { IoLogoGithub , IoMail ,IoLogoNodejs } from "react-icons/io5";
 import { FaLinkedin , FaSquareJs , FaRust ,FaReact , FaGitAlt } from "react-icons/fa6";
 import { FaPython , FaGithub , FaHtml5 , FaCss3 } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
+import { VscDebugConsole } from "react-icons/vsc"
 // My components
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
@@ -16,8 +17,26 @@ import Leyend from "../../components/leyend"
 import SomeBlogsMy from "../../components/some_blogs";
 import SomeProyects from "../../components/some_projects"
 import '../../styles/technologies.css'
+import CardTechnologies from "../../components/cardTechnologies";
 
 function Technologies(){
+  
+  const technologiesList = [
+    { name: "Python", icons: [FaPython], languageKey: "python" },
+    { name: "JavaScript", icons: [IoLogoNodejs, FaSquareJs], languageKey: "js" },
+    { name: "Rust", icons: [FaRust], languageKey: "rust" },
+    { name: "Octave", icons: [SiOctave], languageKey: "octave" },
+    { name: "Arduino", icons: [SiArduino], languageKey: "arduino" },
+    { name: "Assembler", icons: [VscDebugConsole], languageKey: "assembler" },
+    { name: "Django", icons: [SiDjango], languageKey: "django" },
+    { name: "React", icons: [FaReact], languageKey: "react" },
+    { name: "SQL", icons: [SiSqlite, BiLogoPostgresql], languageKey: "sql" },
+    { name: "HTML", icons: [FaHtml5], languageKey: "html" },
+    { name: "CSS", icons: [FaCss3], languageKey: "css" },
+    { name: "Vite", icons: [SiVite], languageKey: "vite" },
+    { name: "Git", icons: [FaGitAlt, FaGithub], languageKey: "git" }
+  ];
+
   return (
     <Layout >
       <Navbar/>
@@ -39,97 +58,20 @@ function Technologies(){
           </IconContext.Provider>
         </section>
         <section className="technologies-section">
-          <h2>Programming Lenguages </h2>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Python</h3>
-              <FaPython size={30} />
-            </div>
-            <p className="technologie-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt eum corporis aspernatur distinctio facere, culpa velit consequatur unde a, quas inventore iure itaque obcaecati! Dignissimos beatae vero in nulla rem!</p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Java Script</h3>
-              <FaSquareJs   size={30} />
-              <IoLogoNodejs size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Arduino uno</h3>
-              <SiArduino size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Assembler</h3>
-              <SiArduino size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Python</h3>
-              <FaRust size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <h2>Frame works </h2>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Django</h3>
-              <SiDjango size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Django</h3>
-              <FaReact size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <h2> Data bases </h2>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Data Bases SQL</h3>
-              <SiSqlite  size={30}/>
-              <BiLogoPostgresql size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <h2> Other technologies: </h2>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Html5</h3>
-              <FaHtml5 size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">css</h3>
-              <FaCss3 size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Vite</h3>
-              <SiVite size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
-          <div className="techonologie-content">
-            <div className="techonologie-title-content">
-              <h3 className="technologie-title">Git</h3>
-              <FaGithub size={30}/>
-              <FaGitAlt size={30}/>
-            </div>
-            <p className="technologie-description"></p>
-          </div>
+          <h2><Language value={"Language"} /> </h2>
+          {technologiesList.map((tech, idx) => (
+            <>
+            { (tech.name === "Django") && <h2>Framework</h2> }
+            { (tech.name === "SQL") && <h2>Databases</h2> }
+            { (tech.name === "HTML") && <h2>Others</h2> }
+            <CardTechnologies
+              key={idx} // Ensure each component has a unique key for React
+              name={tech.name}
+              languageKey={tech.languageKey}
+              icons={tech.icons}
+            />
+            </>
+          ))}
         </section>
         <SomeProyects/>
         <Leyend/>

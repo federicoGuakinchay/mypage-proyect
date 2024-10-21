@@ -5,7 +5,9 @@ import Layout from "../../hocs/layouts/layout"
 // My components
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
-
+import ContactComp from "../../components/contact"
+import ContactForm from "../../components/forms/contacform"
+import '../../styles/contact.css'
 
 
 function Contact(){
@@ -14,7 +16,10 @@ function Contact(){
       <Navbar/>
       <main>
         <div className="nav-site">this is my web page</div>
-        <h1>hello word</h1>
+        <div className="container">
+          <ContactForm/>
+          <ContactComp/>
+        </div>
       </main>
       <Footer/>
     </Layout>

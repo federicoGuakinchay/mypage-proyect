@@ -8,14 +8,12 @@ import { SiFacebook } from "react-icons/si";
 import { RiInstagramFill } from "react-icons/ri";
 import { IoLogoGithub , IoMail } from "react-icons/io5";
 import { FaLinkedin } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
 // My components
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
-import '../../styles/projects.css'
-
-import vash  from '../../assets/images/vash.jpg'
-import juana from '../../assets/images/juana.jpg'
+import SearchDB from "../../components/searchdb";
+import SomeBlogsMy from "../../components/some_blogs";
+import Leyend from "../../components/leyend"
 
 function Project(){
 
@@ -39,72 +37,9 @@ function Project(){
             </div>
           </IconContext.Provider>
         </section>
-        <section  className="Proyect__section"> 
-          <div className="filters__container">
-            <div 
-              tabIndex="0" role='button'  
-              onClick={(e) => e.currentTarget.classList.toggle("filter__unselect")}
-              onKeyDown={(e) =>{if(e.key === 'Enter') e.currentTarget.classList.toggle("filter__unselect")}}
-              className="filter__item ">item
-            </div>
-            <div 
-              tabIndex="0" role='button'  
-              onClick={(e) => e.currentTarget.classList.toggle("filter__unselect")} 
-              onKeyDown={(e) =>{if(e.key === 'Enter') e.currentTarget.classList.toggle("filter__unselect")}}
-              className="filter__item ">item
-            </div>
-            <div 
-              tabIndex="0" role='button' 
-              onClick={(e) => e.currentTarget.classList.toggle("filter__unselect")} 
-              onKeyDown={(e) =>{if(e.key === 'Enter') e.currentTarget.classList.toggle("filter__unselect")}}
-              className="filter__item">item
-            </div>
-            <div 
-              tabIndex="0" role='button'  
-              onClick={(e) => e.currentTarget.classList.toggle("filter__unselect")} 
-              onKeyDown={(e) =>{if(e.key === 'Enter') e.currentTarget.classList.toggle("filter__unselect")}}
-              className="filter__item">item
-            </div>
-            <div 
-              tabIndex="0" role='button'  
-              onClick={(e) => e.currentTarget.classList.toggle("filter__unselect")} 
-              onKeyDown={(e) =>{if(e.key === 'Enter') e.currentTarget.classList.toggle("filter__unselect")}}
-              className="filter__item">item
-            </div>
-          </div>
-          <div className="search-projects">
-            <input type="text" name="search_proyect" id="search_projects" />
-            <button className="icon-search-proyect"><FaSearch size={25}/></button>
-          </div>
-
-          <div className="projects-grid">
-            <div  className="projects-grid-item">
-              <div className="projects-img-content">
-                <div className="projects-img"
-                  style={{ 
-                  background: `url(${vash})`,
-                  backgroundSize: "contain",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",}}>
-                </div>
-              </div>
-              <h3 className="projects-grid-title" style={{textAlign:"center"}}>some-blog-titles-2</h3>
-            </div>
-
-            <div className="projects-grid-item">
-              <div className="projects-img-content">
-                <div className="projects-img"
-                  style={{ 
-                  background: `url(${juana})`,
-                  backgroundSize: "contain",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",}}>
-                </div>
-              </div>
-              <h3 className="some-blog-title" style={{textAlign:"center"}}>some-blog-titles-2</h3>
-            </div>
-          </div>
-        </section>
+        <SearchDB/>
+        <Leyend/>
+        <SomeBlogsMy />
       </main>
       <Footer/>
     </Layout>

@@ -5,13 +5,14 @@
   "link-tecnologies":"tecnologies",
   "link-about":"about me",
   "link-contact":"contact",
-  "link-hire":"hire",
   "link-cookie":"cookies policy",
   "link-privacy":"privacy policy",
+  
   "here-footer":"you're here",
   "NAY":"Not avail yet",
   "pre-footer-text-1":"let's do some of art",
   "pre-footer-text-2":"start here",
+  "address":"address",
   "site":"site",
   "phone":"phone",
   "this":"this page",
@@ -61,10 +62,14 @@
   "assembler":"Assembler is a low-level language used for direct control over hardware. I wrote a few small programs in assembler using a simulator, focusing on memory usage and control flow for educational purposes.",
   
   "django":"Django is a Python framework for backend development, built on the philosophy of 'don't repeat yourself' (DRY). It uses an ORM to interact with databases, and I have worked with SQLite during development and PostgreSQL in production. I've built a few small projects with Django and Django REST framework, which are some of my more ambitious projects. I chose Django because it’s a complete framework that simplifies tasks like authentication and database management.",
-  "React":"React is a JavaScript library for building user interfaces, focusing on reusable components. I've developed several projects in React.",
+  "react":"React is a JavaScript library for building user interfaces, focusing on reusable components. I've developed several projects in React.",
   "html":"HTML5 (HyperText Markup Language) is the foundation of web pages. I use it to structure my web projects effectively.",
   "css":"CSS (Cascading Style Sheets) is what I use to style and design my web applications, creating responsive and aesthetically pleasing interfaces.",
   "vite":"Vite is a modern build tool and development server designed to provide a faster, leaner development experience for web applications. I prefer using Bun to create Vite projects because it's faster than other options I’ve worked with.",
-  "Git":"Git is a free, open-source version control system that helps developers track changes and collaborate on code. It allows teams to work on the same project simultaneously without overwriting each other's contributions.",
+  "git":"Git is a free, open-source version control system that helps developers track changes and collaborate on code. It allows teams to work on the same project simultaneously without overwriting each other's contributions.I upload my git proyects to my github",
+  "sql":"SQL databases are among the most commonly used databases and have a simple logic for saving and connecting data. I use SQLite and PostgreSQL, but other SQL-based databases are quite similar.",
+  "404-text":" this page can`t be found ...",
+  "404-btn":"go to home",
   "":""
+  
 }

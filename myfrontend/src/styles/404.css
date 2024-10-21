@@ -1,0 +1,8 @@
+.go_home{
+  transition: color 1s , background-color 1s ;
+  font-size: 1.5rem ;
+  &:hover{
+    color: #fff;
+    background-color: var(--button-hover);
+  }
+}

@@ -7,7 +7,6 @@ import Technologies from './containers/pages/technologies';
 import Blog from './containers/pages/blog';
 import About from './containers/pages/about';
 import Contact from './containers/pages/contact';
-import Hire from './containers/pages/hire';
 
 function App() {
   return (
@@ -28,8 +27,6 @@ function App() {
           <Route path="/About" element={<About />} />
           {/*Contact Page*/}
           <Route path="/Contact" element={<Contact />} />
-          {/*Hire Page*/}
-          <Route path="/Hire" element={<Hire />} />
         </Routes>
       </Router>
     </>

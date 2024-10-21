@@ -11,7 +11,7 @@ import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
 import SomeProyects from "../../components/some_projects"
 import Leyend from "../../components/leyend"
-import SomeBlogsMy from "../../components/some_blogs";
+import SearchDB from "../../components/searchdb"
 
 
 function Blog(){
@@ -21,14 +21,16 @@ function Blog(){
       <main>
         <section className="main-content-blog">
           <div className="nav-site">this is my web page</div>
-          <div ><h2> Blog </h2></div>
+          <div ><h2 className="bog_title"
+                    style={{fontSize:"3rem", textAlign:"center"
+                    }}>My Blog </h2></div>
+          <SearchDB />
         </section>
-        <SomeProyects/>
         <Leyend/>
+        <SomeProyects/>
         <section className="experience">   </section>  {/* For now i don't have any for now */}
         <section className="clients">      </section>  {/* For now i don't have any for now */}
         <section className="Archivements"> </section>  {/* For now i don't have any for now */}
-        <SomeBlogsMy />
       </main>
       <Footer/>
     </Layout>

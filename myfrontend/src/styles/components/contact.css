@@ -1,0 +1,47 @@
+.contact__info{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+}
+.contact__info__title{
+  font-size: 2rem;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 50px;
+}
+.contact__info__content{
+  display: flex;
+  gap: 25px;
+  a{
+    position: relative;
+    transition: transform .5s , color .5s; 
+    &:hover{transform: translateY(-6px);color: var(--button-hover);}}
+  svg{
+    font-size: 20px;
+    cursor: pointer;
+    transform: translateY(4px);
+    transition: transform .5s , color .5s; 
+    &:hover{transform: translateY(-2px);color: var(--button-hover);}
+  }
+}
+.contact__info__content_phone{
+  display: flex;
+  flex-direction: column; 
+  a{transition: color .5s;
+    &:hover{color: var(--button-hover);}}
+}
+.copy-button{
+  display: contents;
+}
+
+.copied-confirmation{
+  font-size: .8rem;
+  box-sizing: border-box;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background-color: var(--button-hover);
+  color: #fff;
+}

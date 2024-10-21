@@ -43,7 +43,6 @@ function Navbar(){
   const goToBlog = () => {navigate('/blog'); };
   const goToAbout = () => {navigate('/About'); };
   const goToContact = () => {navigate('/Contact'); };
-  const goToHire = () => {navigate('/Hire'); };
 
   return (
     <nav className={nabShadow ? 'navbar-shadow' : ''}>
@@ -91,17 +90,9 @@ function Navbar(){
                 role='button'>  
                 <Language value={"link-about"}/>       <span></span>
           </div></li>
-          <li><div 
-                onClick={goToContact} 
-                onKeyDown={(e)=>{if(e.key === 'Enter')goToContact();}} 
-                className="nav-item" 
-                tabIndex="0" 
-                role='button'>  
-                <Language value={"link-contact"}/>     <span></span>
-          </div></li>
           <li><div>
-            <button className="nav-button-item" onClick={goToHire} > 
-            <Language value={"link-hire"}/>  
+            <button className="nav-button-item" onClick={goToContact} > 
+            <Language value={"link-contact"}/>  
             <div className="load-dot-line">
               <div className="dot d1"></div>
               <div className="dot d2"></div>

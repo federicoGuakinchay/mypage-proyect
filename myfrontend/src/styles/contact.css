@@ -1,0 +1,17 @@
+.container{
+  display: flex;
+  padding: 0 5% 5% 5%;
+  gap: 5%;
+  align-items: center;
+}
+.contact,.contact__form{
+  width: 50%;
+  max-width: 450px;
+}
+@media screen and (max-width: 800px){
+  .container{ flex-direction: column; }
+  .contact,.contact__form{
+    width: 100%;
+    max-width: 500px;
+  }
+}
