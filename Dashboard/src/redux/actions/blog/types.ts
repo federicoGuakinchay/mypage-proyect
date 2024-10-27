@@ -1,0 +1,11 @@
+export const GET_BLOG_LIST_SUCCESS = 'GET_BLOG_LIST_SUCCESS' as const;
+export const GET_BLOG_LIST_FAIL = 'GET_BLOG_LIST_FAIL' as const;
+
+export const GET_BLOG_LIST_CATEGORIES_SUCCESS = 'GET_BLOG_LIST_CATEGORIES_SUCCESS' as const;
+export const GET_BLOG_LIST_CATEGORIES_FAIL = 'GET_BLOG_LIST_CATEGORIES_FAIL' as const;
+
+export const GET_BLOG_SUCCESS = 'GET_BLOG_SUCCESS' as const;
+export const GET_BLOG_FAIL = 'GET_BLOG_FAIL' as const;
+
+export const GET_BLOG_SEARCH_SUCCESS = 'GET_BLOG_SEARCH_SUCCESS' as const;
+export const GET_BLOG_SEARCH_FAIL = 'GET_BLOG_SEARCH_FAIL' as const;

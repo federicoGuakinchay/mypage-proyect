@@ -18,9 +18,13 @@ import environ
 # Initialize environment variables
 env = environ.Env()  
 # Take environment variables from .env file
-environ.Env.read_env('.env')
+    # Path to the .env file, using Path to resolve the current directory of the settings file (__file__)
+env_file = Path(__file__).resolve().parent / '.env'
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Read the .env file
+environ.Env.read_env(str(env_file))
+
+    # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -49,11 +53,22 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-PROJECT_APPS=[]
+PROJECT_APPS=[
+    'apps.blog',
+    'apps.blog_categories',
+    'apps.projects',
+    'apps.projects_categories',
+    'apps.users',
+]
 THIRD_PARTY_APPS=[
     'corsheaders',
     'rest_framework',
-    
+    'social_django',
+    'djoser',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+    'django_quill',
+    'modeltranslation',
 ]
 # All apps
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -71,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -78,7 +94,10 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static', 'dist'),],
+        'DIRS': [
+                    os.path.join(BASE_DIR, 'static', 'dashboard', 'dist'),
+                    os.path.join(BASE_DIR, 'static', 'home', 'dist'),
+                ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,6 +127,14 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
+PASSWORD_HASHERS=[
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+]
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -136,6 +163,26 @@ USE_I18N = True
 USE_TZ = True
 
 
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    # Add any additional languages here
+]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_FALLBACK_LANGUAGES = {
+    'default': ('en',),
+    'es': ('en',),
+}
+MODELTRANSLATION_SAVE_MODEL_LANGUAGE = True
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'apps.blog.translation', 
+    'apps.blog_categories.translation'
+)
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -145,7 +192,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where Django collects sta
 
 # This is where your Vite build output will live
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static', 'dist'),  # Vite output will be here
+    os.path.join(BASE_DIR, 'static'),  # Vite output will be here
+    os.path.join(BASE_DIR, 'static','home','dist'),
+    os.path.join(BASE_DIR, 'static','dashboard','dist'),
 ]
 
 # Media files configuration
@@ -153,7 +202,8 @@ MEDIA_URL = '/media/'  # Access media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Vite's manifest file location, used by Django to load the correct hashed assets
-VITE_MANIFEST_PATH = os.path.join(BASE_DIR, 'static', 'dist', 'manifest.json')
+VITE_MANIFEST_PATH_HOME = os.path.join(BASE_DIR, 'static', 'home', 'dist', 'manifest.json')
+VITE_MANIFEST_PATH_DASHBOARD = os.path.join(BASE_DIR, 'static', 'dashboard', 'dist', 'manifest.json')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -165,11 +215,78 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES':('JWT',),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes= 600),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+
+
+    #"SIGNING_KEY": settings.SECRET_KEY,
+    #"VERIFYING_KEY": "",
+    #"AUDIENCE": None,
+    #"ISSUER": None,
+    #"JSON_ENCODER": None,
+    #"JWK_URL": None,
+    #"LEEWAY": 0,
+#
+    #"AUTH_HEADER_TYPES": ("Bearer",),
+    #"AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    #"USER_ID_FIELD": "id",
+    #"USER_ID_CLAIM": "user_id",
+    #"USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
+
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    #"TOKEN_TYPE_CLAIM": "token_type",
+    #"TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
+#
+    #"JTI_CLAIM": "jti",
+#
+    #"SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
+    #"SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    #"SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+#
+    #"TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
+    #"TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
+    #"TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
+    #"TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
+    #"SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
+    #"SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
+}
+DJOSER ={
+    'LOGIN_FIELD':'email',
+    'USER_CREATE_PASSWORD_RETYPE':True,
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
+    'SEND_CONFIRMATION_EMAIL':True,
+    'SEND_ACTIVATION_EMAIL':True,
+    'SET_USERNAME_RETYPE':True,
+    'SET_PASSWORD_RETYPE':True,
+    'RESET_USERNAME_RETYPE':True,
+    'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL':'email/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL':'activate/{uid}/{token}',
+    'SOCIAL_AUTH_TOKEN_STRATEGY':'djoser.social.token.jwt.TokenStrategy',
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS':['http://localhost:8000/google','http://localhost:8000/facebook'],
+    'SERIALIZERS':{
+        'user_create':'apps.users.serializers.UserCreateSerializer',
+        'user':'apps.users.serializers.UserCreateSerializer',
+        'user_delete':'djoser.serializers.UserDeleteSerializer',
+        'cuerrent_user':'apps.users.serializers.UserCreateSerializer',
+        },
+}
+DOMAIN=os.environ.get('DOMAIN')
+#user model  
+AUTH_USER_MODEL = 'users.UserAccount'
+
 
 CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEV')
 CSRF_TRUSTED_ORIGIND = env.list('CSRF_TRUSTED_ORIGIND_DEV')
 
-EMAIL_BACKEND = 'django.coro.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # To Production 
 

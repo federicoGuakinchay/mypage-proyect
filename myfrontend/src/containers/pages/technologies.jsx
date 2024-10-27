@@ -2,6 +2,8 @@
 import Language from "../../language";
 import Layout from "../../hocs/layouts/layout"
 import { IconContext } from "react-icons";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 // Icons (React of  Icons)
 import { SiFacebook , SiArduino , SiDjango , SiVite , SiSqlite , SiOctave } from "react-icons/si";
 import { RiInstagramFill } from "react-icons/ri";
@@ -20,7 +22,10 @@ import '../../styles/technologies.css'
 import CardTechnologies from "../../components/cardTechnologies";
 
 function Technologies(){
-  
+  useEffect(() => {
+    window.scrollTo(0,0)
+      document.title = "Blog";
+    }, []);
   const technologiesList = [
     { name: "Python", icons: [FaPython], languageKey: "python" },
     { name: "JavaScript", icons: [IoLogoNodejs, FaSquareJs], languageKey: "js" },
@@ -39,6 +44,26 @@ function Technologies(){
 
   return (
     <Layout >
+      <Helmet>
+        <title>only one | Tecnhologies </title>
+        <meta name='description' content='Agency of software. service of creations of web pages'/>
+        <meta name="keywords" content="desarrollador de software, software development, create my own web page , crear my propia pagina web" />
+        <meta name='robots' content='all' />
+        <meta name='author' content='Federico Guainchay' />
+        <meta name='publisher' content='Federico Guakinchay'/>
+
+        <meta property='Og:title'  content='only one | sofware Development'  />
+        <meta property='Og:description' content='Agency of software. service of creations of web pages' />
+        <meta property='Og:url' />
+        <meta property='Og:img' />
+
+        <meta name='twitter:title'content='only one | sofware Development' />
+        <meta name='twitter:description' content='Agency of software. service of creations of web pages'/>
+        <meta name='twitter:url' />
+        <meta name='twitter:img' />
+
+        <link rel="canonical" href="" />
+      </Helmet>
       <Navbar/>
       <main>
         <section className="main-content">

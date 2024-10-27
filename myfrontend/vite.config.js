@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   //base: '/static/',  // Adjust based on your Django static files settings
   build: {
-    outDir: '../static/dist',  // Output to Django's static folder
+    outDir: '../static/home/dist',  // Output to Django's static folder
     emptyOutDir: true,
     manifest: true,  // Important for Django integration
   },

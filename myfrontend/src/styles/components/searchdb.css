@@ -16,13 +16,13 @@
   font-size: 1.3rem;
   cursor: pointer;
   border-radius: 5px;
-  color: var(--text-principal);
-  background-color: #646cff;
-  &:hover{ outline: 1px auto #646cff; }
-}
-.filter__unselect{
   background-color: transparent;
   color: #777 ;
+  &:hover{ outline: 1px auto #646cff; }
+}
+.filter__selected{
+  color: var(--text-principal);
+  background-color: #646cff;
   &:hover{ background-color: var(--back-secundary); color:var(--text-principal);}
 }
 .search-projects{

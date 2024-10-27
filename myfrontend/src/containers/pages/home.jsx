@@ -1,6 +1,7 @@
 // Third-party components
 import Layout from "../../hocs/layouts/layout"
 import { IconContext } from "react-icons";
+import { useEffect } from "react";
 // Icons (React of  Icons)
 import { SiFacebook } from "react-icons/si";
 import { RiInstagramFill } from "react-icons/ri";
@@ -26,6 +27,10 @@ function Home(){
     '  Another one portfolio',
     '  Another one Code Artist'
   ]
+  useEffect(() => {
+    window.scrollTo(0,0)
+      document.title = "Blog";
+    }, []);
   return (
     <Layout >
       <Navbar/>
