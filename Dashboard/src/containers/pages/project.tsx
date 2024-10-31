@@ -1,12 +1,9 @@
 import SideBar from "../../components/navegation/sidebar"
 import NavBar from "../../components/navegation/navbar"
 import MyFooter from "../../components/myfooter"
-import { Connect } from "react-redux"
-import Layout from "../../hocs/layouts/layout"
 
-function Home(){
+function Project(){
   return (
-    <Layout>
     <div className="h-dvh w-dvw flex">
       <SideBar />
       <div className="h-full w-dvw flex flex-col ">
@@ -19,7 +16,6 @@ function Home(){
         <MyFooter/>
       </div>
     </div>
-    </Layout>
   )
 }
-export default Home
+export default Project

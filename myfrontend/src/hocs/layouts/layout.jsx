@@ -16,6 +16,4 @@ const mapStateToProp = state=>({
 
 })
 
-export default connect(mapStateToProp,{
-
-}) (Layout)
+export default connect(mapStateToProp,{}) (Layout)

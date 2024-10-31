@@ -1,84 +1,97 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-[data-mode="dark"] {
-  --color: #0f0; /* Green color for dark mode */
-}
-:root {
-  --color: #f00; /* Red color for light mode */
-}
-
-/* Usage with Tailwind utility classes */
-.background-custom {
-  background-color: var(--color);
-}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Themes */
+:root {
+  /* light theme */
+  --txt-c-1:#224;
+  --txt-c-2:#112;
+  --txt-c-3:#111;
+  --bg-c-1:#fff;
+  --bg-c-2:#ddd;
+  --bg-c-3:#BBB;
+  --side-bg-1:#22f;
+  --side-bg-2:rgb(59, 59, 247);
+  --side-bg-3:#5757dd;
+  --search-bg-1:#003;
+  --search-bg-2:#004;
+  --search-bg-3:#006;
+  --search-bg-4:#009;
+  --notification:#f00;
+  --close:#900;
+  --close-hover:#a00;
+  --close-active: #f00;
+  --hidden-menu: #36e;
+  --hidden-menu-hover: #3e6;
+  --hidden-menu-active: #66e;
+  --side-txt:#fff;
 }
-a:hover {
-  color: #535bf2;
+[data-mode="dark"] {
+  /* dark theme */
+  --bg-c-1:#444;
+  --bg-c-2:#222;
+  --bg-c-3:#111;
+  --txt-c-1:#fff;
+  --txt-c-2:#ddd;
+  --txt-c-3:#BBB;
 }
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+:root {color: rgba(255, 255, 255, 0.87);background-color: #242424;}
+/* side-bar & nav-bar */
+.side-bar{
+  background-color: var(--side-bg-1);
+  color: var(--side-txt);
+  ul{height: calc(100% - 95px);}
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.position-settings{
+  position:absolute;
+  top: 90%;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.side-bar__item{
+  background-color: var(--side-bg-1);
+  color: var(--side-txt);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: color .5s ,background-color .5s; 
+  &:hover{ background-color: var(--side-bg-2);}
+  &:active{ background-color: var(--side-bg-3);}
+  &:focus, &:focus-visible{outline: outset;}
 }
-button:hover {
-  border-color: #646cff;
+.side-bar__item.active{
+  transition: color .5s ,background-color .5s; 
+  background-color: var(--side-txt); 
+  color:var(--side-bg-1); 
+  outline: outset;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+#search-bar, .search-button{
+  background-color:var(--search-bg-1);
+  color: #fff;
 }
+#search-bar{  
+  &:hover{ background-color: var(--search-bg-2); }
+  &:focus,&:focus-visible{ background-color: var(--search-bg-3); } 
+}
+.search-button:hover{ background-color: var(--search-bg-3); }
+.search-button:active{ background-color: var(--search-bg-4); }
+/* content */
+.bg-content{  background-color: var(--side-bg-3) ;}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.color_blink:hover{svg{animation: color_blink 1s  linear 0s infinite  both ;}}
+@keyframes color_blink {
+  0%  {color:yellow;}
+  20% {color: red;  }
+  40% {color:yellow;}
+  80% {color: red;  }
+  100%{color:yellow;}
 }

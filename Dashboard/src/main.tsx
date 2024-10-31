@@ -2,6 +2,7 @@ import { StrictMode} from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { createRoot } from 'react-dom/client';
 import './i18n';
+import './styles/index.css';
 
 const lang: 'en' | 'es' = (localStorage.getItem('i18nextLng') as 'en' | 'es') || 'en';
 const descriptions: Record<'en' | 'es', string> = {

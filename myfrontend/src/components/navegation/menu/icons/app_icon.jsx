@@ -1,4 +1,4 @@
-import { BiOutline } from 'react-icons/bi';
+
 import './app_icon.css'
 import { useNavigate } from 'react-router-dom';
 
