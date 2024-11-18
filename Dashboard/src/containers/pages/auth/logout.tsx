@@ -1,15 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import Layout from '../../../hocs/layouts/login_layout'
+
 
 const Logout: React.FC = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Remove the token and navigate away
-    localStorage.removeItem('token');
-  }, []);
-
   return (
+    <Layout>
     <div className="logout w-dvw h-dvh p-[10%] bg-[#242424] bg[rgba(255, 255, 255, 0.87)] ">
       <h1 className=' text-5xl text-center mb-[50px] font-bold cursor-default'>You Are Logged Out </h1>
       <h2 className=' text-xl cursor-default'>
@@ -32,6 +29,7 @@ const Logout: React.FC = () => {
         >only another one developer</a>
       </h2>
     </div>
+    </Layout>
   );
 };
 

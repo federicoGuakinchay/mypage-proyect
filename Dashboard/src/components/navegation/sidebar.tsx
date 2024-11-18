@@ -116,7 +116,8 @@ const SideBar: React.FC = () => {
           role='button'
         >
           <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
-            <IoSettingsOutline size={34} className='transition-transform group-hover:rotate-[360deg] duration-[1500ms]'/>
+            <IoSettingsOutline size={34} className='transition-transform group-hover:rotate-[360deg]
+            group-focus:rotate-[360deg] duration-[1500ms]'/>
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
             <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Settings</p>

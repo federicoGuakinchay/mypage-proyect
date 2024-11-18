@@ -8,6 +8,8 @@ import {
   GET_BLOG_FAIL,
   GET_BLOG_SEARCH_SUCCESS,
   GET_BLOG_SEARCH_FAIL,
+  GET_AUTHOR_BLOG_LIST_SUCCESS,
+  GET_AUTHOR_BLOG_LIST_FAIL,
 } from './types';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '@redux/reducers';
@@ -155,5 +157,50 @@ export const get_blog_search_page = (search_term: string, page: number): ThunkRe
   } catch (err) {
     console.log(err);
     dispatch({ type: GET_BLOG_SEARCH_FAIL });
+  }
+};
+
+// Author Blog List 
+export const get_author_blog_list = (): ThunkResult<void> => async (dispatch: AppDispatch) => {
+  const config = {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `JWT ${localStorage.getItem('access')}`
+    }
+  };
+  console.log('get_author_blog_list')
+  try {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blog/author_list`, config);
+    if (res.status === 200) {
+      dispatch({ type: GET_AUTHOR_BLOG_LIST_SUCCESS, payload: res.data });
+    } else {
+      console.log(res);
+      dispatch({ type: GET_AUTHOR_BLOG_LIST_FAIL });
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: GET_AUTHOR_BLOG_LIST_FAIL });
+  }
+};
+
+export const get_author_blog_list_page = (page: number): ThunkResult<void> => async (dispatch: AppDispatch) => {
+  const config = {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `JWT ${localStorage.getItem('access')}`
+    }
+  };
+  console.log('get_author_blog_list_page')
+  try {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blog/author_list?p=${page}`, config);
+    if (res.status === 200) {
+      dispatch({ type: GET_AUTHOR_BLOG_LIST_SUCCESS, payload: res.data });
+    } else {
+      console.log(res);
+      dispatch({ type: GET_AUTHOR_BLOG_LIST_FAIL });
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: GET_AUTHOR_BLOG_LIST_FAIL });
   }
 };

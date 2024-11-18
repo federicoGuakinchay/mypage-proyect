@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils import timezone
 from apps.blog_categories.models import BlogCategory
-from apps.users.models import UserAccount
 from django_quill.fields import QuillField
+from  django.conf  import settings 
+User = settings.AUTH_USER_MODEL
 
 def blog_thumnail_directory(instance,filename):
   return f'blog/{instance.id}/{filename}'
@@ -35,7 +36,7 @@ class Post(models.Model):
 
   category = models.ForeignKey(BlogCategory, verbose_name="Category", on_delete=models.PROTECT)
   
-  #author = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+  author = models.ForeignKey(User, on_delete=models.CASCADE)
   class Meta:
     ordering = ('-published',)
 

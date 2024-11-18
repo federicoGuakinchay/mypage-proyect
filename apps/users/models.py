@@ -19,32 +19,43 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        cont = 0 
+        for field in extra_fields:
+            cont += 1
+            print ('extra fields ', cont ,'  : ', field)
+        print ('is active :',user.is_active)
+        print ('is staff:',user.is_staff)
+        print ('is super user :',user.is_superuser)
+        print ('is admin :',user.is_admin)
+        print ('is editor :', user.is_editor)
         return user
+    
     
     def create_superuser(self, email, password=None, **extra_fields):
         user = self.create_user(email, password, **extra_fields)
         user.is_staff = True
         user.is_superuser= True
+        user.is_active= True
         user.save(using=self._db)
         return user
 
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
-
-    email =       models.EmailField(unique=True)
-    first_name=   models.CharField(max_length=255)
-    last_name =   models.CharField(max_length=255)
-    alias =       models.CharField(max_length=255, unique=True)
-    picture =     models.ImageField(upload_to=user_profile_img, null=True, blank=True)
-    bio =         QuillField(null=True, blank=True)
-    created_at =  models.DateTimeField(default=timezone.now)
-    updated_at =  models.DateTimeField(auto_now=True)
+    email =          models.EmailField(unique=True)
+    password =       models.CharField(max_length=128)
+    first_name=      models.CharField(max_length=255)
+    last_name =      models.CharField(max_length=255)
+    alias =          models.CharField(max_length=255, unique=True)
+    picture =        models.ImageField(upload_to=user_profile_img, null=True, blank=True)
+    bio =            QuillField(null=True, blank=True)
+    created_at =     models.DateTimeField(default=timezone.now)
+    updated_at =     models.DateTimeField(auto_now=True)
     
-    is_editor =   models.BooleanField(default=False)
-    is_admin =    models.BooleanField(default=False)
-    is_active =   models.BooleanField(default=True)
-    is_staff =    models.BooleanField(default=False)
+    is_editor =      models.BooleanField(default=False)
+    is_admin =       models.BooleanField(default=False)
+    is_staff =       models.BooleanField(default=False)
 
+    is_active =      models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name','last_name', 'alias']
 

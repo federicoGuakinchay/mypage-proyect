@@ -16,7 +16,7 @@ const AppIcon: React.FC = () => {
   };
 
   return (
-    <div className={`icon flex flex-col items-center h-[78px] relative group ml-3 trancition-all duration-700  ${menu ? 'w-[75px]': 'w-[200px]'}`}>
+    <div className={`icon flex flex-col items-center h-[78px] relative group ml-3 trancition-all duration-700  ${menu ? 'w-[200px]'  : 'w-[75px]'}`}>
       <div
         className="cursor-pointer block box-content w-full h-22"
         onClick={handleSideMenuToggle}

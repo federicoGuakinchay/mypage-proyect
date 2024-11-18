@@ -2,8 +2,12 @@ import { BsSearch } from "react-icons/bs";
 import { MdNotificationsActive } from "react-icons/md";
 import { useState} from "react";
 import { useNavigate , useLocation } from 'react-router-dom';
+import { logout } from '../../redux/actions/auth/auth';
+import { connect } from "react-redux";
 
-const SideBar: React.FC = () => {
+type NavBarProps = { logout: () => void; };
+
+const NavBar: React.FC<NavBarProps> = ({ logout }) => {
   const [notif , setNotif ] = useState(false) 
   const [porfile , setPorfile] = useState(false)
 
@@ -17,6 +21,7 @@ const SideBar: React.FC = () => {
   }
   const navigate = useNavigate();
   const location = useLocation();
+  const handleLogout = () => {logout(); };
   return(
     <div className="w-full nav-bar h-[90px] side-bar rounded-br-3xl flex items-center py-4 px-14 justify-between ">
       <div className="search-filt__input h-full  flex items-center gap-0 w-3/5 ">
@@ -33,7 +38,7 @@ const SideBar: React.FC = () => {
           <MdNotificationsActive size={34}/>
           <span className="notification-card__count absolute bg-red-600 rounded-full w-[25px] h-[25px] top-0 right-0"> 5 </span>
         </button>
-        <div className={`notification-card  absolute rounded t-[100%] bg-blue-500 w-[300px] max-h-96 top-[125px] opacity-0 text-center transition-all duration-[1250ms] ${notif?' right-[35px] opacity-70':' opacity-0 right-[-300px]'}`}>
+        <div className={`notification-card  absolute rounded t-[100%] bg-[--side-bg-1] w-[300px] max-h-96 top-[125px] opacity-0 text-center transition-all duration-[1250ms] ${notif?' right-[35px] opacity-95':' opacity-0 right-[-300px]'}`}>
           <div className=" absolute rounded-full bg-red-600  w-[25px] h-[25px] top-[-10px] right-[-10px] hover:bg-red-500 active:bg-red-600 cursor-pointer cursor-pointer"
             onClick={()=>setNotif(false)}
             >X</div>
@@ -45,18 +50,24 @@ const SideBar: React.FC = () => {
         onClick={porfile_menu}>
           <img src="" alt="porfile-img" />
         </button>
-        <div className={`porfile-card absolute rounded t-[100%] bg-blue-500 w-[300px] max-h-96  text-center top-[125px] flex flex-col transition-all duration-[1250ms] min-h-[55px] ${porfile?' right-[35px] opacity-70':' opacity-0 right-[-300px]'} `}
+        <div className={`porfile-card absolute rounded t-[100%] bg-[--side-bg-1] w-[300px] max-h-96  text-center top-[125px] flex flex-col transition-all duration-[1250ms] min-h-[55px] ${porfile?' right-[35px] opacity-95':' opacity-0 right-[-300px]'} `}
         >
           <div className=" absolute rounded-full bg-red-600  w-[25px] h-[25px] top-[-10px] right-[-10px] hover:bg-red-500 active:bg-red-600 cursor-pointer"
           onClick={()=>setPorfile(false)}
           >X</div>
-          <button className={` profile-option p-[10px] m-[5px] hover:bg-blue-600 active:bg-blue-700 rounded select-none ${porfile?'block':'hidden'} ${location.pathname.endsWith('/my_porfile') ? 'hidden' : ''} `}
-          onClick={() => navigate('/my_porfile')}> your-porfile</button>
-          <button className={` profile-option p-[10px] m-[5px] hover:bg-blue-600 active:bg-blue-700 rounded select-none ${porfile?'block':'hidden'} `}
-          onClick={() => navigate('/logout')}> logout </button>
+          <div className={`h-[50px] profile-option m-[5px] hover:bg-[--side-bg-2] active:bg-[--side-bg-3] rounded select-none ${location.pathname.endsWith('/my_porfile') ? 'hidden' : ''}`}>
+          <button className={`p-[10px] w-full h-full ${porfile?'block':'hidden'} `}
+          onClick={() => navigate('/my_porfile')}> your-porfile</button> </div>
+          <div className={`h-[50px] profile-option m-[5px] hover:bg-[--side-bg-2] active:bg-[--side-bg-3]  rounded select-none`}>
+          <button className={`p-[10px] w-full h-full  ${porfile?'block':'hidden'} `}
+          onClick={handleLogout}> logout </button></div>
         </div>
       </div>
     </div>
   )
 }
-export default SideBar 
+const mapDispatchToProps = {
+  logout: logout,
+};
+
+export default connect(null, mapDispatchToProps)(NavBar);

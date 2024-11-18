@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-// Import individual reducers
-//import someReducer from './someReducer';
+import authReducer from './auth'
+import blog_categories  from  './blogcategories'
+import blog from './blog'
 
 const rootReducer = combineReducers({
-  // other reducers
+  auth:authReducer,
+  blog_categories,
+  blog:blog
 });
-
 export type RootState = ReturnType<typeof rootReducer>; // Automatically infer the state type
 export default rootReducer;

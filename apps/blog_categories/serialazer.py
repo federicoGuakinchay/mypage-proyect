@@ -7,7 +7,8 @@ class BlogCategorySerializer(serializers.ModelSerializer):
     model = BlogCategory
     fields=[
       'id',
-      'name',
+      'name_en',
+      'name_es',
       'slug',
-      'views'
+      'views',
     ]

@@ -67,7 +67,7 @@ function Blog({
           <div ><h2 className="bog_title"
                     style={{fontSize:"3rem", textAlign:"center"
                     }}>My Blog </h2></div>
-          <SearchDB categories={categories&&categories} />
+          <SearchDB categories={categories&&categories} cardsContent={blog_list&&blog_list}/>
         </section>
         <Leyend/>
         <SomeProyects/>

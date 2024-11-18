@@ -16,7 +16,7 @@
 }
 /* Themes */
 :root {
-  /* light theme */
+  /* Default theme */
   --txt-c-1:#224;
   --txt-c-2:#112;
   --txt-c-3:#111;
@@ -29,14 +29,7 @@
   --search-bg-1:#003;
   --search-bg-2:#004;
   --search-bg-3:#006;
-  --search-bg-4:#009;
-  --notification:#f00;
-  --close:#900;
-  --close-hover:#a00;
-  --close-active: #f00;
-  --hidden-menu: #36e;
-  --hidden-menu-hover: #3e6;
-  --hidden-menu-active: #66e;
+  --search-bg-4:#009;  
   --side-txt:#fff;
 }
 [data-mode="dark"] {
@@ -87,11 +80,45 @@
 /* content */
 .bg-content{  background-color: var(--side-bg-3) ;}
 
-.color_blink:hover{svg{animation: color_blink 1s  linear 0s infinite  both ;}}
+.color_blink:hover , .color_blink:focus {svg{animation: color_blink 1s  linear 0s infinite  both ;}}
 @keyframes color_blink {
   0%  {color:yellow;}
   20% {color: red;  }
   40% {color:yellow;}
   80% {color: red;  }
   100%{color:yellow;}
+}
+
+.button-add{
+  background-color: #2cbc63 ;
+  color: var(--side-txt);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color .1s;
+  border-radius: .5rem;
+  font-weight: 500;
+  &:hover{ background-color: #15bc37;}
+  &:active{ background-color: #2cfc63;}
+  &:focus, &:focus-visible{outline: outset }
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+  height: 8px; /* Set the height for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--side-txt); /* Background color of the track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--search-bg-3); /* Color of the thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--search-bg-1); /* Color when hovering over the thumb */
 }

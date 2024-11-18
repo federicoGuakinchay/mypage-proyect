@@ -1,17 +1,18 @@
 import { Route ,Routes, useLocation} from 'react-router-dom'
 import Error404 from '../../containers/errors/404';
-import  Home  from '../../containers/pages/home'
-import Blog from '../../containers/pages/blog';
-import Project from '../../containers/pages/project';
-import Users from '../../containers/pages/users';
-import Calendar from '../../containers/pages/clendar';
-import Task from '../../containers/pages/task';
-import Settings from '../../containers/pages/settings';
-import MyPorfile from '../../containers/pages/my_porfile';
-import Login from '../../containers/pages/login';
-import Register from '../../containers/pages/register';
-import Logout from '../../containers/pages/logout';
-import ResetPassword from '../../containers/pages/reset_password';
+import  Home  from '../../containers/pages/dashboard/home'
+import Blog from '../../containers/pages/dashboard/blog';
+import Project from '../../containers/pages/dashboard/project';
+import Users from '../../containers/pages/dashboard/users';
+import Calendar from '../../containers/pages/dashboard/clendar';
+import Task from '../../containers/pages/dashboard/task';
+import Settings from '../../containers/pages/dashboard/settings';
+import MyPorfile from '../../containers/pages/dashboard/my_porfile';
+import LoginPage from '../../containers/pages/auth/login';
+import Register from '../../containers/pages/auth/register';
+import Logout from '../../containers/pages/auth/logout';
+import ResetPassword from '../../containers/pages/auth/reset_password';
+import ResetPasswordComfirm from '../../containers/pages/auth/reset_password_comfirm'
 import { AnimatePresence } from 'framer-motion';
 
 
@@ -39,13 +40,15 @@ function AppRoutes() {
           {/* my porfile Page */}
           <Route path="/my_porfile" element={<MyPorfile/>} />
           {/*login Page*/}
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<LoginPage />} />
           {/*register Page*/}
           <Route path="/register" element={<Register />} />
           {/* logout Page */}
           <Route path="/logout" element={<Logout/>} />
-          {/*reset passdword Page*/}
+          {/* send reset-mail Page*/}
           <Route path="/reset_password" element={<ResetPassword />} />
+          {/*reset passdword Page*/}
+          <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordComfirm />} />
         </Routes>  
       </AnimatePresence>
   )
