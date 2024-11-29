@@ -14,7 +14,7 @@ import { FaLinkedin } from "react-icons/fa6";
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
 import DisplayProjects from "../display_db/display_projects";
-import SomeBlogsMy from "../display_db/display_blogs";
+import SomeBlogsMy from "../display_db/some_blogs";
 import Leyend from "../../components/leyend"
 
 //  redux 

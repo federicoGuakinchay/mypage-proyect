@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 import { TranlateComponent , TranslateValue } from "../../components/settings/language";
-import Grid from "./grid/proyects_grid";
+import ProjectsGrid from "./grid/proyects_grid";
 import "../../styles/display_db/display_db.css"
 
 
@@ -13,7 +13,7 @@ function DisplayProjects({ categories = [], cardsContent = [], program_lenguages
   const  [selectedLanguages, setSelectedLanguages]  = useState([]);
   console.log('cardsContent  projects', cardsContent)
   const lang = TranslateValue('lang');
-
+  
   if (!categories || !cardsContent) {
     return <div>
     <div className="loading-item" > 
@@ -122,7 +122,7 @@ function DisplayProjects({ categories = [], cardsContent = [], program_lenguages
           <FaSearch size={25} />
         </button>
       </div>
-        <Grid objects={filteredCards} />
+        <ProjectsGrid objects={filteredCards} />
     </section>
   );
   }

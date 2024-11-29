@@ -20,7 +20,12 @@ function SomeProyects ({get_projects_list, projects_list}){
   const [currentIndex, setCurrentIndex] = useState(0);
   const api_url = 'http://localhost:8000';
   
-  function goToProject(slug) {navigate('/Projects/' + slug);}
+  function goToProject(item) {
+    if ( item.content ){ navigate(`/projects/${item.title}`) }
+    else navigate(item.title);
+  }
+
+  const lang = TranslateValue('lang');
 
   useEffect(() => {
     // Set `site` values based on screen width
@@ -75,8 +80,8 @@ function SomeProyects ({get_projects_list, projects_list}){
           className={`some-proyects__card proy${i}`}
           tabIndex="0" 
           role="button"
-          onClick={() => goToProject(array[i].title)} 
-          onKeyDown={(e)=>{if(e.key === 'Enter'){() => goToProject(array[i].title)};}}>
+          onClick={() => goToProject(array[i])} 
+          onKeyDown={(e)=>{if(e.key === 'Enter'){() => goToProject(array[i])};}}>
             <div className='some-proyects__card__img__content'> 
             <div alt={array[i].title} className="some-proyects__card__img" 
               style={{ 
@@ -89,7 +94,8 @@ function SomeProyects ({get_projects_list, projects_list}){
             <div className="some-proyects__card__categories__container">
               {array[i].categories .length > 0 ? (
                   array[i].categories.map((item, index) => (
-                    <h4 key={index} className="some-proyects__card__categories">{item.name_es}</h4>
+                    <p key={index} className="some-proyects__card__categories">
+                      {(lang=='es')?item.name_es:item.name_en}</p>
                   ))):<></>}
             </div>
           </div>

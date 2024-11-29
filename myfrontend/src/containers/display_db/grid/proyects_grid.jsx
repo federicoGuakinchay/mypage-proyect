@@ -7,8 +7,12 @@ function ProjectsGrid ({objects}){
   const api_url = import.meta.env.VITE_API_URL ; 
   const lang = TranslateValue('lang');
   const navigate = useNavigate();
-  function goToBlog(slug) { navigate(`/Projects/${slug}`); 
+  function goToProject(item) {
+    if ( item.content ){ navigate(`/projects/${item.title}`) }
+    else navigate(item.title);
   }
+
+  
   return(
 <div className="projects-grid">
   {objects.length > 0 ? (
@@ -18,8 +22,8 @@ function ProjectsGrid ({objects}){
           className="projects-grid-item"
           tabIndex="0"
           role="button"
-          onClick={() => goToBlog(item.title)}
-          onKeyDown={(e) => { if (e.key === 'Enter') goToBlog(item.title); }}
+          onClick={() => goToProject(item)}
+          onKeyDown={(e) => { if (e.key === 'Enter') goToProject(item); }}
         >
           <div className="projects-img-content">
             <img
@@ -38,7 +42,7 @@ function ProjectsGrid ({objects}){
             </p>
             <p className="projects-grid-categories">
               {item.categories.map((subitem, index) => (
-                <span key={index}>{subitem.name_es}</span>
+                <span key={index}>{(lang==='en')?subitem.name_en:subitem.name_es}</span>
               ))}
             </p>
           </div>
