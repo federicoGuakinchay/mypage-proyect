@@ -1,6 +1,4 @@
 // Third-party components
-import Language from "../../language";
-import Layout from "../../hocs/layouts/layout"
 import { IconContext } from "react-icons";
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
@@ -13,12 +11,14 @@ import { FaPython , FaGithub , FaHtml5 , FaCss3 } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { VscDebugConsole } from "react-icons/vsc"
 // My components
+import {TranlateComponent} from "../../components/settings/language";
+import Layout from "../../hocs/layouts/layout"
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
 import Leyend from "../../components/leyend"
-import SomeBlogsMy from "../../components/some_blogs";
-import SomeProyects from "../../components/some_projects"
-import '../../styles/technologies.css'
+import SomeBlogsMy from "../display_db/some_projects";
+import SomeProyects from "../display_db/some_projects"
+import '../../styles/pages/technologies.css'
 import CardTechnologies from "../../components/cardTechnologies";
 
 function Technologies(){
@@ -69,8 +69,8 @@ function Technologies(){
         <section className="main-content">
           <div className="nav-site">this is my web page</div>
           <div className="principal__title">
-            <h2>  <Language  value={"Technologies-title"}/>  </h2>
-            <p>   <Language  value={"Technologies-text"} />  </p>  
+            <h2>  <TranlateComponent    value={"Technologies-title"}/>  </h2>
+            <p>   <TranlateComponent    value={"Technologies-text"} />  </p>  
           </div>
           <IconContext.Provider value={{ color: "blue", className: "social-media-ico", size:"2em" }}>
             <div className="social-media-conteiner">
@@ -83,7 +83,7 @@ function Technologies(){
           </IconContext.Provider>
         </section>
         <section className="technologies-section">
-          <h2><Language value={"Language"} /> </h2>
+          <h2><TranlateComponent   value={"Language"} /> </h2>
           {technologiesList.map((tech, idx) => (
             <>
             { (tech.name === "Django") && <h2>Framework</h2> }

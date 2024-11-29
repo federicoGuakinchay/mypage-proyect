@@ -7,18 +7,18 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('email', 'first_name', 'is_staff', 'is_active')
     list_filter = ('is_staff', 'is_active')
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Personal Info', {'fields': ('first_name','last_name', 'alias', 'picture', 'bio','bio_es',)}),
+        (None, {'fields': ('email', )}),
+        ('Personal Info', {'fields': ('first_name','last_name', 'slug', 'picture', 'description_en','description_es',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_editor','is_admin','groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login','created_at')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'first_name','last_name', 'alias', 'password1', 'password2', 'is_active', 'is_staff',)}
+            'fields': ('email', 'first_name','last_name', 'slug', 'password1', 'password2', 'is_active', 'is_staff',)}
         ),
     )
-    search_fields = ('email', 'first_name','last_name', 'alias')
+    search_fields = ('email', 'first_name','last_name', 'slug')
     filter_horizontal = ('groups', 'user_permissions')
 
 admin.site.register(UserAccount, UserAdmin)

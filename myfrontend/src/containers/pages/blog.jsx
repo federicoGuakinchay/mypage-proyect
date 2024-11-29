@@ -2,24 +2,18 @@
 import { Helmet } from "react-helmet-async"
 import Layout from "../../hocs/layouts/layout"
 import { useEffect } from "react"
-//import { IconContext } from "react-icons";
-//// Icons (React of  Icons)
-//import { SiFacebook } from "react-icons/si";
-//import { RiInstagramFill } from "react-icons/ri";
-//import { IoLogoGithub , IoMail } from "react-icons/io5";
-//import { FaLinkedin } from "react-icons/fa6";
+
 // My components
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
-import SomeProyects from "../../components/some_projects"
+import SomeProyects from "../display_db/some_projects"
 import Leyend from "../../components/leyend"
-import SearchDB from "../../components/searchdb"
+import DisplayBlogs from "../display_db/display_blogs"
 
 //  redux 
 import { get_categories } from "../../redux/actions/blog_categories/blogcategories"
 import { connect } from "react-redux"
-import { get_blog_list } from "../../redux/actions/blog/blog"
-import { get_blog_list_page } from "../../redux/actions/blog/blog"
+import { get_blog_list, get_blog_list_page } from "../../redux/actions/blog/blog"
 
 
 function Blog({
@@ -37,7 +31,7 @@ function Blog({
     get_categories()
     get_blog_list()
     }, [get_categories, get_blog_list])
-
+    
   return (
     <Layout >
         <Helmet>
@@ -67,7 +61,7 @@ function Blog({
           <div ><h2 className="bog_title"
                     style={{fontSize:"3rem", textAlign:"center"
                     }}>My Blog </h2></div>
-          <SearchDB categories={categories&&categories} cardsContent={blog_list&&blog_list}/>
+          <DisplayBlogs categories={categories&&categories} cardsContent={blog_list&&blog_list}/>
         </section>
         <Leyend/>
         <SomeProyects/>

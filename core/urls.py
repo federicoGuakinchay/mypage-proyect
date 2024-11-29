@@ -18,7 +18,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/blog/',include('apps.blog.urls')),
     path('api/blog_categories/', include('apps.blog_categories.urls')),
-    path('api/projects', include('apps.projects.urls') ),
+    path('api/projects/', include('apps.projects.urls') ),
     path('api/projects_categories/', include('apps.projects_categories.urls')),
 ]
 

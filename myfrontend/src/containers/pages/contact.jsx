@@ -8,7 +8,7 @@ import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
 import ContactComp from "../../components/contact"
 import ContactForm from "../../components/forms/contacform"
-import '../../styles/contact.css'
+import '../../styles/pages/contact.css'
 
 
 function Contact(){

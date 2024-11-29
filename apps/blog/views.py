@@ -58,7 +58,7 @@ class PostDetailView(APIView):
     def get(self, request, slug, format=None):
         if Post.postobjects.filter(slug=slug).exists():
             post = Post.postobjects.get(slug=slug)
-            serializer = PostListSerializer(post)
+            serializer = PostSerializer(post)
             
             # Get the client IP address
             Address = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -75,8 +75,8 @@ class PostDetailView(APIView):
 
                 # Increment the post's view count
                 post.views += 1
-                print(post.views)
                 post.save()
+            print(serializer.data)
             return Response({'post': serializer.data}, status=status.HTTP_200_OK)
         else:
             return Response({"detail": "No posts found."}, status=status.HTTP_404_NOT_FOUND)
@@ -103,15 +103,24 @@ class searchBlogView(APIView):
   
 
 
-class AuthorBlogListViews(APIView):
+class AuthorBlogListViewsModify(APIView):
   permission_classes = [permissions.IsAuthenticated]
   def get(self,request,format=None):
     user  = self.request.user
-    print(self.request.user)
     posts = Post.postobjects.filter(author=user).all().order_by('-published')
-    for post  in posts:
-      print(post.title)
-    print('post :',posts, posts.exists())
+    if posts.exists():
+      paginator = SmallSetPagination()
+      result = paginator.paginate_queryset(posts, request)
+      serializer = PostListSerializer(result, many=True)
+      return paginator.get_paginated_response({'posts':serializer.data})
+    else:
+      print('don´t exist any post here ')
+      return Response({"detail": "No posts found."}, status=status.HTTP_404_NOT_FOUND)
+
+class AuthorBlogListViewsShow(APIView):
+  permission_classes = [permissions.AllowAny]
+  def get(self,request,slug,format=None):
+    posts = Post.postobjects.filter(author__slug=slug).all().order_by('-published')
     if posts.exists():
       paginator = SmallSetPagination()
       result = paginator.paginate_queryset(posts, request)

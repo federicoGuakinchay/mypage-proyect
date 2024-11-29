@@ -1,5 +1,5 @@
 
-import Language from "../language";
+import {TranlateComponent  } from './settings/language';
 
 function CardTechnologies({ name, languageKey, icons , title = null}) {
   return (
@@ -9,7 +9,7 @@ function CardTechnologies({ name, languageKey, icons , title = null}) {
         {icons.length > 0 && icons.map((Icon, idx) => <Icon key={idx} size={30} />)}
       </div>
       <p className="technologie-description">
-        <Language value={languageKey} />
+        <TranlateComponent   value={languageKey} />
       </p>
     </div>
   );

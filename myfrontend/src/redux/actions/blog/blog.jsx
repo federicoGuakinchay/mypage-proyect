@@ -8,6 +8,8 @@ import{
   GET_BLOG_FAIL,
   GET_BLOG_SEARCH_SUCCESS,
   GET_BLOG_SEARCH_FAIL,
+  GET_AUTHOR_LIST_SUCCESS,
+  GET_AUTHOR_LIST_FAIL,
 } from './types'
 
 export const get_blog_list  = () =>  async dispatch  => {
@@ -164,5 +166,44 @@ export const get_blog_search_page  = (search_term,page) =>  async dispatch  => {
     dispatch ({
       type:GET_BLOG_SEARCH_FAIL ,
     })
+  }
+}
+
+export const get_blog_list_author  = (slug) =>  async dispatch  => {
+  const config={
+    headers:{'Accept':'application/json',}
+  };
+  try{
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blog/author/${slug}`, config);
+    if (res.status === 200 ){
+      dispatch({type: GET_AUTHOR_LIST_SUCCESS, payload: res.data});
+    }
+    else{
+      console.log(res)
+      dispatch({type: GET_AUTHOR_LIST_FAIL});
+    }
+  }catch(err){
+    console.log(err)
+    dispatch ({type:GET_AUTHOR_LIST_FAIL,})
+  }
+}
+export const get_blog_list_author_page  = (slug,page) =>  async dispatch  => {
+  const config={
+    headers:{
+      'Accept':'application/json',
+    }
+  };
+  try{
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blog/list_by_category?slug=${slug}&p=${page}`, config);
+    if (res.status === 200 ){
+      dispatch({type: GET_AUTHOR_LIST_SUCCESS, payload: res.data});
+    }
+    else{
+      console.log(res)
+      dispatch({type: GET_AUTHOR_LIST_FAIL});
+    }
+  }catch(err){
+    console.log(err)
+    dispatch ({type:GET_AUTHOR_LIST_FAIL,})
   }
 }

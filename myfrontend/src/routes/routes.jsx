@@ -1,11 +1,13 @@
 import {Route ,Routes, useLocation} from 'react-router-dom'
-import Error404 from './containers/errors/404';
-import  Home  from './containers/pages/home'
-import Projects from './containers/pages/project';
-import Technologies from './containers/pages/technologies';
-import Blog from './containers/pages/blog';
-import About from './containers/pages/about';
-import Contact from './containers/pages/contact';
+import Error404 from '../containers/errors/404';
+import  Home  from '../containers/pages/home'
+import Projects from '../containers/pages/project';
+import Technologies from '../containers/pages/technologies';
+import Blog from '../containers/pages/blog';
+import About from '../containers/pages/about';
+import Contact from '../containers/pages/contact';
+import BlogPage from '../containers/pages/blog_page';
+import AuthorPage from '../containers/pages/author_page';
 import { AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -27,6 +29,10 @@ function App() {
           <Route path="/About" element={<About />} />
           {/*Contact Page*/}
           <Route path="/Contact" element={<Contact />} />
+          {/*blog detail*/}
+          <Route path="/Blog/:slug" element={<BlogPage />} />
+          {/*Author  page*/}
+          <Route path="/Author/:slug" element={<AuthorPage />} />
         </Routes>  
       </AnimatePresence>
   )

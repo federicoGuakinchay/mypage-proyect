@@ -1,0 +1,24 @@
+.Author_card_big{
+  padding: 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  img{
+    border-radius: 1rem;
+    width: 180px;
+    height:180px;
+  }
+  div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+    h2{margin: 0;}
+    p{margin: 0;}
+  }
+}
+.author-page-title{
+  font-size: 2.5rem;
+  margin-left: 5%;
+  margin-bottom: 5%;
+}

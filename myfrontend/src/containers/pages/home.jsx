@@ -11,11 +11,11 @@ import { FaLinkedin } from "react-icons/fa6";
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
 import Reasons from "../../components/reasons"
-import SomeProyects from "../../components/some_projects"
+import SomeProyects from "../display_db/some_projects"
 import Leyend from "../../components/leyend"
 import Typewriter from "../../components/type_writer"
-import SomeBlogsMy from "../../components/some_blogs";
-import '../../styles/home.css'
+import SomeBlogsMy from "../display_db/some_blogs";
+import '../../styles/pages/home.css'
 
 
 function Home(){

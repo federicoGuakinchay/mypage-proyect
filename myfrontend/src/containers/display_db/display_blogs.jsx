@@ -1,51 +1,54 @@
 import { useState } from "react";
+
 import { FaSearch } from "react-icons/fa";
-import "../styles/components/searchdb.css";
-import LangFunc from "../lang_func";
-import dateFormat from "../time";
+
+import "../../styles/display_db/display_db.css"
+import { TranlateComponent , TranslateValue } from "../../components/settings/language";
+import Grid from "./grid/blog_grid";
 
 
-function SearchDB({ categories = [], cardsContent = [], type = null }) {
+
+function DisplayBlogs({ categories = [], cardsContent = [], type = null }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
-
-  const api_url = 'http://localhost:8000';
-
-  const lang = LangFunc('lang');
+  console.log('cardsContent', cardsContent)
+  const lang = TranslateValue('lang');
 
   if (!categories || !cardsContent) {
-    return <div>Loading...</div>; 
+    return <div>
+    <div className="loading-item" > 
+      <TranlateComponent value={"load"} />
+      <div className="loading-dot-line">
+        <div className="dot d1"></div>
+        <div className="dot d2"></div>
+        <div className="dot d3"></div>
+      </div>
+    </div>
+  </div>; 
   }
   else{
   
   const handleCategoryClick = (category) => {
     setSelectedCategories((prev) => {
-      // Ensure prev is an array (for additional safety)
       return Array.isArray(prev) && prev.includes(category)
         ? prev.filter((item) => item !== category)
         : [...prev, category];
     });
   };
   const handleAllCategoriesClick = (category) => {
-    // Add the main category
     handleCategoryClick(category.slug);
-  
-    // Recursively handle subcategories
     const processSubcategories = (subcategories) => {
       if (Array.isArray(subcategories) && subcategories.length > 0) {
         subcategories.forEach((subCategory) => {
-          // Add the subcategory
           handleAllCategoriesClick(subCategory);
         });
       }
     };
   
-    // Start processing subcategories, if any
     if (category && category.sub_category) {
       processSubcategories(category.sub_category);
     }
   };
-
   const filteredCards = Array.isArray(cardsContent) ? cardsContent.filter((card) => {
     const matchesCategory =
       selectedCategories.length === 0 || 
@@ -101,44 +104,10 @@ function SearchDB({ categories = [], cardsContent = [], type = null }) {
           <FaSearch size={25} />
         </button>
       </div>
-
-      {/* Projects Grid */}
-      <div className="projects-grid">
-        {filteredCards.length > 0 ? (
-          filteredCards.map((item, index) => (
-            <a key={index} className="projects-grid-item" tabIndex="0" role="button">
-              <div className="projects-img-content">
-                <img
-                  onDrop={(event) => event.preventDefault()}
-                  onDragOver={(event) => event.preventDefault()}
-                  src={`${api_url}${item.thumbnail}`}
-                  alt={item.title}
-                  className='img-card'
-                />
-              </div>
-              <div>
-              <p className="projects-grid-cat" >
-                {lang === 'en' ?  `${item.category.name_en}:` : `${item.category.name_es}:`}
-              </p>
-              <p className="projects-grid-cat">
-                {lang === 'en' ?  `${dateFormat(item.published ,'en-US' ,'ago')}` : `${dateFormat(item.published ,'es-ARG' ,'ago')}`}
-              </p>
-              </div>
-              <h3 className="projects-grid-title" style={{ textAlign: "center" }}>
-                {lang === 'en' ? item.title_en : item.title_es}
-              </h3>
-              <p className="projects-grid-content" style={{ textAlign: "center" }}>
-                {lang === 'en' ? item.description_en : item.description_es}
-              </p>
-            </a>
-          ))
-        ) : (
-          <p>No projects found</p>
-        )}
-      </div>
+        <Grid objects={filteredCards} go='Blog' />
     </section>
   );
   }
 }
 
-export default SearchDB;
+export default DisplayBlogs;

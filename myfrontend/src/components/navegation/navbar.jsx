@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from "react-redux"
 import LanguageChange from './menu/settings/LanguageChange.jsx'
 import ThemeToggle from "./menu/settings/theme.jsx"
-import './navbar.css'
+import '../../styles/navegation/navbar.css'
 import AppIcon from "./menu/icons/app_icon.jsx"
-import Language from "../../language.jsx"
+import {TranlateComponent} from "../settings/language.jsx";
 
 
 function Navbar(){
@@ -63,7 +63,7 @@ function Navbar(){
                 className="nav-item" 
                 tabIndex="0" 
                 role='button'>  
-                <Language value={"link-proyects"}/> 
+                <TranlateComponent   value={"link-proyects"}/> 
                 <span></span>
           </div></li>
           <li><div 
@@ -72,7 +72,7 @@ function Navbar(){
                 className="nav-item" 
                 tabIndex="0" 
                 role='button'>  
-                <Language value={"link-tecnologies"}/> 
+                <TranlateComponent   value={"link-tecnologies"}/> 
                 <span></span>
           </div></li>
           <li><div 
@@ -88,11 +88,11 @@ function Navbar(){
                 className="nav-item" 
                 tabIndex="0" 
                 role='button'>  
-                <Language value={"link-about"}/>       <span></span>
+                <TranlateComponent   value={"link-about"}/>       <span></span>
           </div></li>
           <li><div>
             <button className="nav-button-item" onClick={goToContact} > 
-            <Language value={"link-contact"}/>  
+            <TranlateComponent   value={"link-contact"}/>  
             <div className="load-dot-line">
               <div className="dot d1"></div>
               <div className="dot d2"></div>

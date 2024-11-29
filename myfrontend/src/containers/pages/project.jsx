@@ -1,6 +1,6 @@
 // Third-party components
 //import { useState } from "react";
-import Language from "../../language";
+import {TranlateComponent} from "../../components/settings/language";
 import Layout from "../../hocs/layouts/layout"
 import { IconContext } from "react-icons";
 import { Helmet } from "react-helmet-async";
@@ -13,15 +13,34 @@ import { FaLinkedin } from "react-icons/fa6";
 // My components
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
-import SearchDB from "../../components/searchdb";
-import SomeBlogsMy from "../../components/some_blogs";
+import DisplayProjects from "../display_db/display_projects";
+import SomeBlogsMy from "../display_db/display_blogs";
 import Leyend from "../../components/leyend"
 
-function Project(){
+//  redux 
+import { get_projects_categories, get_languages } from "../../redux/actions/projects_categories/projects_categories"
+import { connect } from "react-redux"
+import { get_projects_list , get_projects_list_page } from "../../redux/actions/projects/projects"
+
+function Project({
+  get_languages,
+  languages,
+  get_projects_categories,
+  projects_categories,
+  get_projects_list,
+  get_projects_list_page,
+  projects_list,
+  count,
+  next,
+  previous,
+} ){
   useEffect(() => {
     window.scrollTo(0,0)
-      document.title = "Blog";
-    }, []);
+    document.title = "Blog";
+    get_projects_categories()
+    get_languages()
+    get_projects_list()
+    }, [get_projects_categories,get_languages,get_projects_list]);
   return (
     <Layout >
       <Helmet>
@@ -49,8 +68,8 @@ function Project(){
         <section className="main-content">
           <div className="nav-site">this is my web page</div>
           <div className="principal__title">
-            <h2>  <Language  value={"Proyects-title"}/>  </h2>
-            <p>   <Language  value={"Proyects-text"} />  </p>  
+            <h2>  <TranlateComponent    value={"Proyects-title"}/>  </h2>
+            <p>   <TranlateComponent    value={"Proyects-text"} />  </p>  
           </div>
           <IconContext.Provider value={{ color: "blue", className: "social-media-ico", size:"2em" }}>
             <div className="social-media-conteiner">
@@ -62,7 +81,7 @@ function Project(){
             </div>
           </IconContext.Provider>
         </section>
-        <SearchDB/>
+        <DisplayProjects categories= {projects_categories&&projects_categories} cardsContent={projects_list&&projects_list} program_lenguages={languages && languages} />
         <Leyend/>
         <SomeBlogsMy />
       </main>
@@ -70,4 +89,17 @@ function Project(){
     </Layout>
   )
 }
-export default Project
+const mapStateToProps = (state) => ({
+  languages: state.ProjectsCategories.languages,
+  projects_categories: state.ProjectsCategories.categories,
+  projects_list: state.Projects.projects_list,
+  count: state.Projects.count,
+  next: state.Projects.next,
+  previous: state.Projects.previous,
+});
+export default connect(mapStateToProps,{
+  get_projects_categories,
+  get_projects_list,
+  get_projects_list_page,
+  get_languages,
+}) (Project)

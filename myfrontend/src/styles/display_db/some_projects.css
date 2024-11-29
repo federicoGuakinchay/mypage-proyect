@@ -97,8 +97,9 @@
 }
 .some-proyects__card__categories{
   margin: 0;
+  text-align: center;
 }
-.proy1,.proy2,.proy3,.proy4,.proy5,.proy6,.proy7,.proy8,.proy9,.proy10{
+.proy0,.proy1,.proy2,.proy3,.proy4,.proy5,.proy6,.proy7,.proy8,.proy9{
   &:hover{ 
     .some-proyects__card__img{transform: scale(1); transition: transform 1s;}
     .some-proyects__card__title{color: var(--button-hover);transition: color 1s;}}}

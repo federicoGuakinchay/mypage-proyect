@@ -14,7 +14,7 @@ const descriptions = {
   es: "Agencia de desarrollo de software. Servicio de creacion de paginas webs",
 };
 
-import App from './routes.jsx'
+import App from './routes/routes.jsx'
 import './styles/index.css'
 
 createRoot(document.getElementById('root')).render(

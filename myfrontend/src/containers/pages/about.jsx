@@ -1,6 +1,6 @@
 // Third-party components
 import { Helmet } from "react-helmet-async";
-import Language from "../../language";
+import {TranlateComponent } from "../../components/settings/language";
 import Layout from "../../hocs/layouts/layout"
 import { IconContext } from "react-icons";
 import { useEffect } from "react";
@@ -13,8 +13,8 @@ import { FaLinkedin } from "react-icons/fa6";
 import Navbar from "../../components/navegation/navbar"
 import Footer from "../../components/navegation/myFooter"
 import Leyend from "../../components/leyend"
-import SomeBlogsMy from "../../components/some_blogs";
-import SomeProyects from "../../components/some_projects"
+import SomeBlogsMy from "../display_db/some_blogs";
+import SomeProyects from "../display_db/some_projects"
 
 function About(){
   useEffect(() => {
@@ -48,9 +48,9 @@ function About(){
         <section className="main-content">
           <div className="nav-site">this is my web page</div>
           <div className="principal__title" style={{paddingTop:"0"}}>
-            <h2>  <Language  value={"About-title"}/>  </h2>
-            <p>   <Language  value={"About-text-1"} style={{fontSize:"1.1rem"}} />  </p> 
-            <p>   <Language  value={"About-text-2"} style={{fontSize:"1.1rem"}} />  </p>  
+            <h2>  <TranlateComponent    value={"About-title"}/>  </h2>
+            <p>   <TranlateComponent    value={"About-text-1"} style={{fontSize:"1.1rem"}} />  </p> 
+            <p>   <TranlateComponent    value={"About-text-2"} style={{fontSize:"1.1rem"}} />  </p>  
           </div>
           <IconContext.Provider value={{ color: "blue", className: "social-media-ico", size:"2em" }}>
             <div className="social-media-conteiner">

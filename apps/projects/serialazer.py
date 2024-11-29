@@ -1,0 +1,24 @@
+from rest_framework import serializers
+from .models import *
+from apps.projects_categories.serialazer import ProjectsCategorySerializer , LanguagesCategorySerializer
+from ..users.serializers import UserSerializerBlog
+# convert the info to JSON 
+class ProjectsSerializer(serializers.ModelSerializer):
+  categories = ProjectsCategorySerializer(many=True)
+  languages = LanguagesCategorySerializer(many=True)
+  author = UserSerializerBlog()
+  class Meta:
+    model = Project
+    fields = [
+      'id', 
+      'title',
+      'content', 'content_en', 'content_es',
+      'thumbnail', 
+      'status', 
+      'published', 
+      'updated',
+      'views', 
+      'categories',
+      'languages',
+      'author',
+    ]

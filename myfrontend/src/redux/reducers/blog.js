@@ -7,6 +7,8 @@ import{
   GET_BLOG_FAIL,
   GET_BLOG_SEARCH_SUCCESS,
   GET_BLOG_SEARCH_FAIL,
+  GET_AUTHOR_LIST_SUCCESS,
+  GET_AUTHOR_LIST_FAIL,
 } from '../actions/blog/types'
 
 const initialState = {
@@ -45,6 +47,20 @@ export default function blog(state= initialState , action){
         previous: payload.previous
     }
     case GET_BLOG_LIST_CATEGORIES_FAIL:
+      return {...state, 
+        blog_list_category:  null, 
+        count:      null, 
+        next:       null,
+        previous:   null
+    }
+    case GET_AUTHOR_LIST_SUCCESS:
+      return {...state, 
+        blog_list: payload.results.posts, 
+        count: payload.count, 
+        next: payload.next,
+        previous: payload.previous
+    }
+    case GET_AUTHOR_LIST_FAIL:
       return {...state, 
         blog_list_category:  null, 
         count:      null, 

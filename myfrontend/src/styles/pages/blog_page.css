@@ -1,0 +1,4 @@
+.main-blog-page{
+  display: flex;
+  section{ min-width: 15%; }
+}

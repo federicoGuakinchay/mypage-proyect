@@ -1,5 +1,5 @@
 import '../styles/components/contact.css'
-import Language from '../language';
+import {TranlateComponent} from './settings/language';
 
 import { useState } from 'react';
 import { TfiEmail } from "react-icons/tfi";
@@ -33,10 +33,10 @@ function Contact () {
         {messageCopied && <span className="copied-confirmation">Copied!</span>}
       </div>
 
-      <h2 className="contact__info__title" > <Language value={ "phone" } /> <FaPhone/> </h2>
+      <h2 className="contact__info__title" > <TranlateComponent   value={ "phone" } /> <FaPhone/> </h2>
       <span className='contact__info__content_phone' >Argentina <a href=''> not avail yet</a> </span>
       
-      <h2 className="contact__info__title" > <Language value={ "address" } />  <FaRegAddressCard/> </h2> 
+      <h2 className="contact__info__title" > <TranlateComponent   value={ "address" } />  <FaRegAddressCard/> </h2> 
       <span> not avail yet </span>
     </div>
 

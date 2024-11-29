@@ -45,9 +45,9 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     password =       models.CharField(max_length=128)
     first_name=      models.CharField(max_length=255)
     last_name =      models.CharField(max_length=255)
-    alias =          models.CharField(max_length=255, unique=True)
+    slug =           models.CharField(max_length=255, unique=True)
     picture =        models.ImageField(upload_to=user_profile_img, null=True, blank=True)
-    bio =            QuillField(null=True, blank=True)
+    description=     QuillField(null=True, blank=True)
     created_at =     models.DateTimeField(default=timezone.now)
     updated_at =     models.DateTimeField(auto_now=True)
     
@@ -56,10 +56,10 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     is_staff =       models.BooleanField(default=False)
 
     is_active =      models.BooleanField(default=False)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name','last_name', 'alias']
+    USERNAME_FIELD=  'email'
+    REQUIRED_FIELDS= ['first_name','last_name', 'slug']
 
     objects = UserManager()
 
     def __str__(self):
-        return self.alias
+        return self.slug
