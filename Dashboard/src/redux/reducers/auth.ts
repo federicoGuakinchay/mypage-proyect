@@ -22,6 +22,7 @@ interface AuthState {
   user: { id: number; alias: string; email: string; first_name: string; last_name: string } | null;
   loading: boolean;
   user_loading : boolean;
+  picture: string|null;
   error: string | null;
   isAuthenticated: boolean;
 }
@@ -34,6 +35,7 @@ const initialState:AuthState = {
   user_loading : false,
   error : null,
   isAuthenticated: false,
+  picture:null,
 }
 
 

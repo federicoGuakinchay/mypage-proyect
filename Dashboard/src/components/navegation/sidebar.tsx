@@ -13,7 +13,7 @@ const SideBar: React.FC = () => {
   
   return (
     <div className="side-bar h-full w-fit rounded-br-3xl">
-      <div className="px-0 py-2">
+      <div className="px-0 pt-2">
         <AppIcon />
       </div>
       <ul className="h-full p-1 flex flex-col gap-2">
@@ -24,11 +24,11 @@ const SideBar: React.FC = () => {
           tabIndex={0}
           role='button'
         >
-          <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
+          <div className='relative w-[80px] py-2 flex justify-center z-10 bg-inherit'>
             <TiHomeOutline size={34} />
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
-            <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Dashboard</p>
+            <p className='text-l font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Dashboard</p>
           </div>
         </li>
         
@@ -39,11 +39,11 @@ const SideBar: React.FC = () => {
           tabIndex={0}
           role='button'
         >
-          <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
+          <div className='relative w-[80px] py-2 flex justify-center z-10 bg-inherit'>
             <LuFolders size={34} />
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
-            <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Projects</p>
+            <p className='text-l font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Projects</p>
           </div>
         </li>
         
@@ -54,11 +54,11 @@ const SideBar: React.FC = () => {
           tabIndex={0}
           role='button'
         >
-          <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
+          <div className='relative w-[80px] py-2 flex justify-center z-10 bg-inherit'>
             <LuFileSignature size={34} />
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
-            <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Blog</p>
+            <p className='text-l font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Blog</p>
           </div>
         </li>
 
@@ -69,11 +69,11 @@ const SideBar: React.FC = () => {
           tabIndex={0}
           role='button'
         >
-          <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
+          <div className='relative w-[80px] py-2 flex justify-center z-10 bg-inherit'>
             <LuUsers2 size={34} />
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
-            <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Users</p>
+            <p className='text-l font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Users</p>
           </div>
         </li>
         <li
@@ -83,11 +83,11 @@ const SideBar: React.FC = () => {
           tabIndex={0}
           role='button'
         >
-          <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
+          <div className='relative w-[80px] py-2 flex justify-center z-10 bg-inherit'>
             <TbCalendarClock size={34} />
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
-            <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>calendar</p>
+            <p className='text-l font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>calendar</p>
           </div>
         </li>
 
@@ -98,11 +98,11 @@ const SideBar: React.FC = () => {
           tabIndex={0}
           role='button'
         >
-          <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
+          <div className='relative w-[80px] py-2 flex justify-center z-10 bg-inherit'>
             <AiFillAlert size={34}  />
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
-            <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>task</p>
+            <p className='text-l font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>task</p>
           </div>
         </li>
 
@@ -115,12 +115,12 @@ const SideBar: React.FC = () => {
           tabIndex={0}
           role='button'
         >
-          <div className='relative w-[90px] py-2 flex justify-center z-10 bg-inherit'>
+          <div className='relative w-[80px] py-2 flex justify-center z-10 bg-inherit'>
             <IoSettingsOutline size={34} className='transition-transform group-hover:rotate-[360deg]
             group-focus:rotate-[360deg] duration-[1500ms]'/>
           </div>
           <div className='absolute w-full h-full top-0 left-0'>
-            <p className='text-xl font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Settings</p>
+            <p className='text-l font-bold leading-[3rem] pr-3 flex items-center justify-end select-none'>Settings</p>
           </div>
         </li>
       </ul>

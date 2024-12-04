@@ -102,7 +102,6 @@ const LoginPage: React.FC<LoginPageProps> = ({
             ><FaSquareXTwitter className=' text-xl ' /></button>
         </div>
         <div className=' flex justify-around mb-[15px] cursor-default '>
-          ¿
           <a
             onClick={() => navigate('/reset_password')}
             onKeyDown={(e) => {
@@ -113,10 +112,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
             className='mx-[5px] transition-transform hover:text-sky-600 hover:translate-y-1 duration-[605ms] active:text-sky-400 cusrsor-pointer'
           >
               Do you forgot your password?  
-          </a> ?
+          </a> 
         </div>
         <div className='flex justify-center cursor-default'>
-          Go to the{' '}
+          Go to {' '}
           <a href="http://localhost:5173/"
             className='mx-[5px] transition-transform hover:text-sky-600 hover:translate-y-1 duration-[605ms] active:text-sky-400 cusrsor-pointer'
           >only another one developer</a>

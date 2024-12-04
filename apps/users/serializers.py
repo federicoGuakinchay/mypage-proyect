@@ -5,9 +5,11 @@ from djoser.serializers import UserCreateSerializer
 
 # convert the info to JSON 
 class UserAccountSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = UserAccount
-        fields = ['email', 'password', 'first_name', 'last_name', 'slug']
+        fields = ['email', 'first_name', 'last_name', 'picture', 'slug']
+
 class UserSerializer(UserCreateSerializer):
   class Meta(UserCreateSerializer.Meta):
     model = UserAccount
@@ -25,3 +27,15 @@ class UserListSerializer(serializers.ModelSerializer):
   class Meta(UserCreateSerializer.Meta):
     model = UserAccount
     fields = ['id','first_name', 'last_name','slug','picture','created_at','updated_at','email']
+
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserAccount
+        fields = ['id', 'email', 'first_name', 'last_name', 'full_name', 'picture']
+
+    def get_full_name(self, obj):
+        print('ful name  here : ')
+        return f"{obj.first_name} {obj.last_name}"

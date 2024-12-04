@@ -19,15 +19,6 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
-        cont = 0 
-        for field in extra_fields:
-            cont += 1
-            print ('extra fields ', cont ,'  : ', field)
-        print ('is active :',user.is_active)
-        print ('is staff:',user.is_staff)
-        print ('is super user :',user.is_superuser)
-        print ('is admin :',user.is_admin)
-        print ('is editor :', user.is_editor)
         return user
     
     
@@ -41,6 +32,14 @@ class UserManager(BaseUserManager):
 
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
+
+    class UserRole(models.TextChoices):
+        SUPERUSER = 'SUPERUSER', 'Superuser'
+        ADMIN = 'ADMIN', 'Admin'
+        EDITOR = 'EDITOR', 'Editor'
+        STAFF = 'STAFF', 'Staff'
+
+
     email =          models.EmailField(unique=True)
     password =       models.CharField(max_length=128)
     first_name=      models.CharField(max_length=255)

@@ -276,9 +276,9 @@ DJOSER ={
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS':['http://localhost:8000/google','http://localhost:8000/facebook'],
     'SERIALIZERS':{
         'user_create':'apps.users.serializers.UserCreateSerializer',
-        'user':'apps.users.serializers.UserCreateSerializer',
+        'user':'apps.users.serializers.UserSerializer',
         'user_delete':'djoser.serializers.UserDeleteSerializer',
-        'cuerrent_user':'apps.users.serializers.UserCreateSerializer',
+        'current_user':'apps.users.serializers.UserSerializer',
         },
 }
 DOMAIN=os.environ.get('DOMAIN')

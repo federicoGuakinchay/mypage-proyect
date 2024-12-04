@@ -16,7 +16,7 @@ const AppIcon: React.FC = () => {
   };
 
   return (
-    <div className={`icon flex flex-col items-center h-[78px] relative group ml-3 trancition-all duration-700  ${menu ? 'w-[200px]'  : 'w-[75px]'}`}>
+    <div className={`icon flex flex-col items-center h-[78px] relative group ml-3 trancition-all duration-700  ${menu ? 'w-[185px]'  : 'w-[65px]'}`}>
       <div
         className="cursor-pointer block box-content w-full h-22"
         onClick={handleSideMenuToggle}
@@ -24,12 +24,13 @@ const AppIcon: React.FC = () => {
         tabIndex={0}
         role="button"
       >
-        <div className="flex flex-col text-center px-3 w-[75px] py-4 rounded-3xl bg-[#000] relative z-10  ">
-          <p className="text-xl font-bold leading-none select-none">ONLY</p>
-          <p className="text-xl font-bold leading-none select-none">ONE</p>
+        
+        <div className="flex flex-col text-center w-[65px] h-[65px]   rounded-3xl bg-[#000] relative z-10 justify-center ">
+          <p className="text-l font-bold leading-none select-none">ONLY</p>
+          <p className="text-l font-bold leading-none select-none">ONE</p>
         </div>
-        <div className={`flex flex-col text-center top-[0px] left-[-5px] px-3 py-4 w-[75px] absolute rounded-3xl bg-[#fff] z-0 truncate text-black text-right trancition-all duration-700 w-full`} >
-          <p className="text-l font-bold leading-0 select-none">ANOTHER</p>
+        <div className={`flex flex-col text-center top-[0px] left-[-5px] px-2 py-4 h-[65px] absolute rounded-3xl bg-[#fff] z-0 truncate text-black text-right trancition-all duration-700 w-full`} >
+          <p className="text-l font-bold leading-none select-none">ANOTHER</p>
           <p className="text-l font-bold leading-none select-none">DASHBOARD</p>
         </div>
       </div>
@@ -38,3 +39,8 @@ const AppIcon: React.FC = () => {
 };
 
 export default AppIcon;
+//<div className="flex flex-col  w-[65px] h-[65px]  rounded-3xl bg-[#000] relative z-10 justify-center items-center ">
+//          <p className="text-l font-bold leading-none select-none">ONLY</p>
+//          <p className="text-l font-bold leading-none select-none">ONE</p>
+//        </div>
+//        <div className={`flex flex-col justify-center top-[0px] left-[-5px] w-[65px] h-[65px] absolute rounded-3xl bg-[#fff] z-0 truncate text-black text-right trancition-all duration-700 w-full`} ></div>

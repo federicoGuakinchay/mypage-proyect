@@ -177,7 +177,7 @@ export const load_user = ():AppThunk => async (dispatch : App_Dispatch)=>{
       }
     };
     try{
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/users/me`,config);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/users/me/`,config);
       if (response.status === 200){
         dispatch({
           type: USER_LOADED_SUCCESS,
