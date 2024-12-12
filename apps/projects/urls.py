@@ -9,6 +9,6 @@ urlpatterns = [
   path('author/<slug>', AuthorProjectListViewsShow.as_view()),
 
   # Dashboard  view  (my blog list)
-  path('author_list', AuthorProjectListViewsModify.as_view()),
-  path('author_list/', AuthorProjectListViewsModify.as_view(), name='author_list'),
+  path('author_list', AuthorProjectListViewsShow.as_view()),
+  path('author_list/', AuthorProjectListViewsShow.as_view(), name='author_list'),
 ]

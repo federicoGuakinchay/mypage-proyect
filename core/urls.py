@@ -20,6 +20,8 @@ urlpatterns = [
     path('api/blog_categories/', include('apps.blog_categories.urls')),
     path('api/projects/', include('apps.projects.urls') ),
     path('api/projects_categories/', include('apps.projects_categories.urls')),
+    path('api/notifications/',include('apps.notifications.urls')),
+    path('api/messages/',include('apps.custom_messages.urls')),
 ]
 
 # Serve media and static files

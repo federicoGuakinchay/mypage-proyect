@@ -5,8 +5,8 @@ from .models import Project , ViewCount
 from apps.projects_categories.models import ProjectsCategory , Language
 from django.db.models import Q
 
-from .serialazer import ProjectsSerializer
-from .pagination import SmallSetPagination ,MediumSetPagination, BigSetPagination
+from .serialazer import ProjectsSerializer ,CommentProjectSerializer
+from ..paginator.pagination import SmallSetPagination ,MediumSetPagination, BigSetPagination
 
 class ProjectListViews(APIView):
   permission_classes = [permissions.AllowAny]
@@ -88,22 +88,31 @@ class searchProjectView(APIView):
     results    = paginator.paginate_queryset(matches, request)
     serializer = ProjectsSerializer(results, many=True)
     return paginator.get_paginated_response({'Projects':serializer.data})
-  
 
+class ProjectDetailViewDashBoard(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, request, slug, format=None):
+        if Project.projectobjects.filter(slug=slug).exists():
+            Project = Project.projectobjects.get(slug=slug)
+            serializer = ProjectsSerializer(Project)
+            comments = Project.get_comments()
+            serializercomments =  CommentProjectSerializer(comments)
 
-class AuthorProjectListViewsModify(APIView):
-  permission_classes = [permissions.IsAuthenticated]
-  def get(self,request,format=None):
-    user         = self.request.user
-    Projects     = Project.projectobjects.filter(author=user).all().order_by('-published')
-    if Projects.exists():
-      paginator  = SmallSetPagination()
-      result     = paginator.paginate_queryset(Projects, request)
-      serializer = ProjectsSerializer(result, many=True)
-      return paginator.get_paginated_response({'Projects':serializer.data})
-    else:
-      print('don´t exist any Project here ')
-      return Response({"detail": "No Projects found."}, status=status.HTTP_404_NOT_FOUND)
+            Address = request.META.get('HTTP_X_FORWARDED_FOR')
+            if Address:
+                ip = Address.split(',')[-1].strip()
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+
+            if not ViewCount.objects.filter(Project=Project, ip_address=ip).exists():
+                view = ViewCount(Project=Project, ip_address=ip)
+                view.save()
+                Project.views += 1
+                Project.save()
+            print(serializer.data)
+            return Response({'Project': serializer.data,'comments':serializercomments.data}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "No Projects found."}, status=status.HTTP_404_NOT_FOUND)
 
 class AuthorProjectListViewsShow(APIView):
   permission_classes = [permissions.AllowAny]

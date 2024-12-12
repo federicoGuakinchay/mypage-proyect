@@ -3,6 +3,13 @@ from .models import *
 from apps.projects_categories.serialazer import ProjectsCategorySerializer , LanguagesCategorySerializer
 from ..users.serializers import UserSerializerBlog
 # convert the info to JSON 
+
+class CommentProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommentProject
+        fields = ['id', 'post', 'author', 'content', 'created_at', ]
+        read_only_fields = ['id', 'created_at', 'author']
+
 class ProjectsSerializer(serializers.ModelSerializer):
   categories = ProjectsCategorySerializer(many=True)
   languages = LanguagesCategorySerializer(many=True)

@@ -30,10 +30,11 @@ class Project(models.Model):
   class Meta:
     ordering = ('-published',)
 
+  def get_comments(self):
+      return self.comments
   def get_view_count(self):
       views = ViewCount.objects.filter(post=self).count()
       return views
-  
   def __str__(self):
         return self.title
 
@@ -42,3 +43,14 @@ class ViewCount(models.Model):
     ip_address = models.CharField(max_length=255)
     def __str__(self):
       return f"View for {self.project.title} from {self.ip_address}"
+
+class CommentProject(models.Model):
+    project = models.ForeignKey('Project',related_name='project_comments',on_delete=models.CASCADE)
+    author = models.ForeignKey(User,related_name='project_comments_author',on_delete=models.CASCADE)
+    content = QuillField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ('-created_at',)
+    def __str__(self):
+        return f"Comment by {self.author} on {self.project.title}"

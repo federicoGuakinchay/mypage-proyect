@@ -59,6 +59,8 @@ PROJECT_APPS=[
     'apps.projects',
     'apps.projects_categories',
     'apps.users',
+    'apps.notifications',
+    'apps.custom_messages',
 ]
 THIRD_PARTY_APPS=[
     'corsheaders',

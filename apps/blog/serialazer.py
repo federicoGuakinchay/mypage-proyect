@@ -40,3 +40,9 @@ class PostListSerializer(serializers.ModelSerializer):
       'category',
       'author'
     ]
+
+class CommentPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommentPost
+        fields = ['id', 'post', 'author', 'content', 'created_at']
+        read_only_fields = ['id', 'created_at', 'author']

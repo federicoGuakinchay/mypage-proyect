@@ -5,7 +5,7 @@ from .models import Post,ViewCount
 from apps.blog_categories.models import BlogCategory
 from django.db.models import Q
 
-from .serialazer import PostSerializer , PostListSerializer
+from .serialazer import PostSerializer , PostListSerializer,CommentPostSerializer
 from .pagination import SmallSetPagination ,MediumSetPagination, BigSetPagination
 
 class BlogListViews(APIView):
@@ -102,6 +102,35 @@ class searchBlogView(APIView):
     return paginator.get_paginated_response({'posts':serializer.data})
   
 
+class PostDetailViewDashBoard(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, slug, format=None):
+        if Post.postobjects.filter(slug=slug).exists():
+            post = Post.postobjects.get(slug=slug)
+            serializer = PostSerializer(post)
+            comments = Post.get_comments()
+            serializercomments =  CommentPostSerializer(comments)
+            # Get the client IP address
+            Address = request.META.get('HTTP_X_FORWARDED_FOR')
+            if Address:
+                ip = Address.split(',')[-1].strip()
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+
+            # Check if the view has already been counted for this IP address
+            if not ViewCount.objects.filter(post=post, ip_address=ip).exists():
+                # Create a new view count entry
+                view = ViewCount(post=post, ip_address=ip)
+                view.save()
+
+                # Increment the post's view count
+                post.views += 1
+                post.save()
+            print(serializer.data)
+            return Response({'post': serializer.data,'comments':serializercomments.data}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "No posts found."}, status=status.HTTP_404_NOT_FOUND)
 
 class AuthorBlogListViewsModify(APIView):
   permission_classes = [permissions.IsAuthenticated]

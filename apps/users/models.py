@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 from django_quill.fields import QuillField
+from django.utils.text import slugify
 
 logger = logging.getLogger(__name__)
 
@@ -16,28 +17,40 @@ class UserManager(BaseUserManager):
             raise ValueError('The Email field must be set')
         email = self.normalize_email(email)
         logger.debug(f'Creating user: {email} with extra fields: {extra_fields}')
+        extra_fields.setdefault("role", UserAccount.UserRole.EDITOR)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
     
-    
-    def create_superuser(self, email, password=None, **extra_fields):
-        user = self.create_user(email, password, **extra_fields)
-        user.is_staff = True
-        user.is_superuser= True
-        user.is_active= True
+    def create_staffuser(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("The Email field must be set")
+        email = self.normalize_email(email)
+        extra_fields.setdefault("role", UserAccount.UserRole.STAFF)
+        extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("is_staff", True)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
-
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("role", UserAccount.UserRole.SUPERUSER)
+        extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("is_staff", True)  # Superuser should always be staff
+        extra_fields.setdefault("is_superuser", True)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     class UserRole(models.TextChoices):
         SUPERUSER = 'SUPERUSER', 'Superuser'
+        STAFF = 'STAFF', 'Staff'
         ADMIN = 'ADMIN', 'Admin'
         EDITOR = 'EDITOR', 'Editor'
-        STAFF = 'STAFF', 'Staff'
 
 
     email =          models.EmailField(unique=True)
@@ -50,11 +63,15 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     created_at =     models.DateTimeField(default=timezone.now)
     updated_at =     models.DateTimeField(auto_now=True)
     
-    is_editor =      models.BooleanField(default=False)
-    is_admin =       models.BooleanField(default=False)
-    is_staff =       models.BooleanField(default=False)
+    role = models.CharField(
+        max_length=10,
+        choices=UserRole.choices,
+        default=UserRole.STAFF,)
 
-    is_active =      models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)  
+    is_superuser = models.BooleanField(default=False)
+
     USERNAME_FIELD=  'email'
     REQUIRED_FIELDS= ['first_name','last_name', 'slug']
 
@@ -62,3 +79,13 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.first_name}-{self.last_name}-{self.pk or ''}")
+        # Dynamically update `is_staff` and `is_superuser` based on role
+        if self.role in {self.UserRole.ADMIN, self.UserRole.SUPERUSER}:
+            self.is_staff = True
+        if self.role == self.UserRole.SUPERUSER:
+            self.is_superuser = True
+        super().save(*args, **kwargs)

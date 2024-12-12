@@ -8,12 +8,12 @@ class UserAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAccount
-        fields = ['email', 'first_name', 'last_name', 'picture', 'slug']
+        fields = ['email', 'first_name', 'last_name', 'picture', 'slug','role']
 
 class UserSerializer(UserCreateSerializer):
   class Meta(UserCreateSerializer.Meta):
     model = UserAccount
-    fields = ['id','first_name', 'last_name' ,'slug','picture','description_en','description_es','created_at','updated_at','email','is_active','is_editor','is_admin' , 'is_superuser','is_staff']
+    fields = ['id','first_name', 'last_name' ,'slug','picture','description_en','description_es','created_at','updated_at','email','is_active','role']
 
 
 

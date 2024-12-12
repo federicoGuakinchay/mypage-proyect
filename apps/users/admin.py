@@ -9,7 +9,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('first_name','last_name', 'slug', 'picture', 'description_en','description_es',)}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_editor','is_admin','groups', 'user_permissions')}),
+        ('Permissions', {'fields': ('is_active', 'role' , 'groups' , 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login','created_at')}),
     )
     add_fieldsets = (
