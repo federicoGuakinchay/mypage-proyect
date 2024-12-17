@@ -8,20 +8,20 @@ For now, I’m organizing my project and using this file as a placeholder.
 
 - [ ] Finish this file.
 
-# Django-bakend:
-- [ ] create and test a api view to users settings 
-- [ ] create and test a api view to message
-- [ ] create and test a api view to notifications 
-- [ ] create and test a api view to users profile
-- [ ] create and test a api view to users projects
-- [ ] create and test a api view to users post
-- [ ] create and test a api view to users profile
+  ### Django-bakend:
+  - [ ] create and test a api view to users settings 
+  - [ ] create and test a api view to message
+  - [ ] create and test a api view to notifications 
+  - [ ] create and test a api view to users profile
+  - [ ] create and test a api view to users projects
+  - [ ] create and test a api view to users post
+  - [ ] create and test a api view to users profile
 
-# Principal-Page:
-- [ ] List item 1 
+  ### Principal-Page:
+  - [ ] List item 1 
 
-# Dashboard:
-- [ ] List item 1 
+  ### Dashboard:
+  - [ ] List item 1 
 
 ## Things I Want to Change in My Project:
 - [ ] List item 1 
@@ -37,5 +37,5 @@ For now, I’m organizing my project and using this file as a placeholder.
   - Delete this file if the project is no longer being updated.
 
 ## Maybe: 
-  # Principal-Page:
+  ### Principal-Page:
   - [ ] Translate the page into more lenguages() 
