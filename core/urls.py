@@ -6,7 +6,6 @@ from django.views.generic import TemplateView
 import djoser
 
 urlpatterns = [
-
     # Catch-all URL for the home React/Vite app (SPA routing)
     re_path(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
     re_path(r'^dashboard/$', TemplateView.as_view(template_name='dashboard.html'), name='dashboard'),
@@ -22,6 +21,7 @@ urlpatterns = [
     path('api/projects_categories/', include('apps.projects_categories.urls')),
     path('api/notifications/',include('apps.notifications.urls')),
     path('api/messages/',include('apps.custom_messages.urls')),
+    path('api/',include('apps.users.urls'))
 ]
 
 # Serve media and static files

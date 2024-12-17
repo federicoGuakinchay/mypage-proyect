@@ -12,19 +12,24 @@ class Notification(models.Model):
     NOTIFICATION_TYPES = (
         ('project_published', 'Project Published'),
         ('project_updated', 'Project Updated'),
+        ('project_deleted', 'Project Deleted'),
         ('comment', 'New Comment'),
         ('announcement', 'Announcement'),
         ('new_project', 'New Project'),
-        ('LIMIT DATE', 'Limit Date'),
+        ('limit_date', 'Limit Date'),
+        ('add_user','Add User'),
+        ('update_user','Update User'),
+        ('delete_user','Delete User'),
+        ('settings_modifications','Settings Modifications'),
     )
     
     created_at        = models.DateTimeField(default=now)
     is_read           = models.BooleanField(default=False)
     title             = models.CharField(max_length=255)
-    user              = models.ForeignKey(User, related_name='notifications', on_delete=models.CASCADE)
+    user              = models.ForeignKey(User, related_name='notifications', on_delete=models.CASCADE,blank=True)
     message           = models.TextField()
-    link              = models.URLField(_("Link"), max_length=200)
-    notification_type = models.CharField(max_length=20, choices=NOTIFICATION_TYPES)
+    link              = models.URLField(_("Link"), max_length=200, blank=True)
+    notification_type = models.CharField(max_length=25, choices=NOTIFICATION_TYPES)
 
     class Meta:
         ordering = ['-created_at']

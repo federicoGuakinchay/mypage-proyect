@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UserAccount
+from .models import UserAccount,UserSettings
 from apps.blog_categories.serialazer import BlogCategorySerializer
 from djoser.serializers import UserCreateSerializer
 
@@ -39,3 +39,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
     def get_full_name(self, obj):
         print('ful name  here : ')
         return f"{obj.first_name} {obj.last_name}"
+    
+class UserSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserSettings
+        fields = '__all__' 

@@ -2,9 +2,10 @@ from django.contrib import admin
 from .models import *
 from django.utils.translation import gettext_lazy as _
 
+
 class UserAdmin(admin.ModelAdmin):
     ordering = ('email',)
-    list_display = ('email', 'first_name', 'is_staff', 'is_active')
+    list_display = ('email', 'first_name', 'is_staff', 'is_active','id')
     list_filter = ('is_staff', 'is_active')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

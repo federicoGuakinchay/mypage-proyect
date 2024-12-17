@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django_quill.fields import QuillField
 from django.utils.text import slugify
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -89,3 +90,21 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
         if self.role == self.UserRole.SUPERUSER:
             self.is_superuser = True
         super().save(*args, **kwargs)
+
+
+class UserSettings(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="settings"
+    )
+    theme = models.CharField(
+        max_length=20,
+        choices=[('light', 'Light'), ('dark', 'Dark')],
+        default='light')
+    email_notifications = models.BooleanField(default=False)
+    push_notifications = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Settings for {self.user.username}"
