@@ -26,7 +26,7 @@ A private page for me to administrate:
   - users.
 
 ### Technologies to use:
-  -React with TypeScript.
-  -Tailwind CSS.
+  - React with TypeScript.
+  - Tailwind CSS.
   - Django Rest Framework. (backend)
 
