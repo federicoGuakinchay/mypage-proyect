@@ -7,7 +7,8 @@ declare module './store' {
 
 // Declare the global variable
 declare global {
-  var side_menu_open: boolean;
+  let side_menu_open: boolean;
+  side_menu_open=false
 }
 
 // Ensure this file is treated as a module

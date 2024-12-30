@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactNode , useEffect } from "react";
 import { check_authenticated, refresh ,load_user} from "../../redux/actions/auth/auth";
 import { Root_State } from "../../store";
+import { logout } from '../../redux/actions/auth/auth';
 
 
 type LayoutProps = {
@@ -16,24 +17,37 @@ const Layout: React.FC<LayoutProps> = ({
   user,
   refresh,
   load_user,
+  logout,
 }) => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (isAuthenticated === false) {
-      if (localStorage.getItem('access')) {
+    console.log(isAuthenticated)
+    if (!isAuthenticated) {
+      const accessToken =  localStorage.getItem("access");
+      const refreshToken = localStorage.getItem("refresh");
+
+      if (accessToken) {
         check_authenticated();
-      } else { 
-        if (localStorage.getItem('refresh')){
-          refresh();
-        }else{navigate('/logout');}
+      } else if (refreshToken) {
+        refresh();
+      } else {
+        navigate("/logout");
       }
     }
-  }, [isAuthenticated, check_authenticated, navigate,refresh]);
-
+  }, [isAuthenticated, check_authenticated, refresh, navigate]);
+  
   useEffect(() => {
-    if(user=== null){load_user();}
-  }, [user,load_user])
+    if (user === null && isAuthenticated) {
+      try {
+        load_user();
+      } catch (error) {
+        console.error("Failed to load user",error);
+        logout();
+        navigate("/logout");
+    }
+  }
+  }, [user, isAuthenticated, load_user, logout, navigate]);
 
   return (
     <div >
@@ -53,6 +67,7 @@ const connector = connect(mapStateToProps, {
   check_authenticated,
   refresh,
   load_user,
+  logout,
 });
 
 // Export the connected component

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ReactNode, useEffect } from "react";
 import { check_authenticated, refresh } from "../../redux/actions/auth/auth";
 import { Root_State } from "../../store";
+import { logout } from '../../redux/actions/auth/auth';
+
 
 type LayoutProps = {
   children: ReactNode;
@@ -14,6 +16,7 @@ const Layout: React.FC<LayoutProps> = ({
   isAuthenticated,
   user,
   refresh,
+  logout,
 }) => {
   const navigate = useNavigate();
   console.log('login')
@@ -40,13 +43,22 @@ const Layout: React.FC<LayoutProps> = ({
 
   useEffect(() => {
     // Load user data if authenticated but not already loaded
-    if (user === null && isAuthenticated) {
-      console.log('User is authenticated but not loaded. Refreshing user data.');
-      refresh();
+    const handleUserRefresh = async () => {
+      if (user === null && isAuthenticated) {
+        try {
+          console.log('User is authenticated but not loaded. Refreshing user data.');
+          await refresh();{navigate('/home')}
+        } catch (error) {
+          console.error('Failed to refresh user data. Logging out.', error);
+          logout()
+          navigate('/login');
+        }
+      }
     }
-  }, [user, isAuthenticated, refresh]);
+    handleUserRefresh();
+  },[user, isAuthenticated, refresh, navigate,logout]);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 // Map Redux state to props
@@ -60,6 +72,7 @@ const mapStateToProps = (state: Root_State) => ({
 const connector = connect(mapStateToProps, {
   check_authenticated,
   refresh,
+  logout,
 });
 
 export default connector(Layout);

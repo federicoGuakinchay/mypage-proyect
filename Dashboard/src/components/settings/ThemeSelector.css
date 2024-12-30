@@ -1,0 +1,45 @@
+/* errase defaul radio button */
+.container input {
+  position: absolute;
+  user-select: none;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* color and desing of custom radio button*/
+.light1{background: linear-gradient(45deg, gray 40%, white 60%);}
+.light2{background: linear-gradient(45deg, #800 40%, white 60%);}
+.dark1{background: linear-gradient(45deg, gray 40%, black 60%);}
+.dark2{background: linear-gradient(45deg, #00f 40%, black 60%);}
+.container {
+  position: relative;
+  font-size: 22px;
+  user-select: none;
+}
+/* custom radio button check svg content */
+.checkmark {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 25%;
+  color: #fff;
+}
+
+/* On mouse-over */
+.container{
+  &:hover input ~ .checkmark,&:focus input ~ .checkmark,&:focus-visible input ~ .checkmark{
+    transition: outline .1s;
+    outline: solid #777;
+    color: #777;}
+}
+
+/* When the radio button is checked */
+.container input:checked ~ .checkmark {
+  outline: outset var(--cheked);
+  color: var(--cheked);
+}

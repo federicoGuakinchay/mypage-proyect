@@ -10,10 +10,15 @@ class UserAccountSerializer(serializers.ModelSerializer):
         model = UserAccount
         fields = ['email', 'first_name', 'last_name', 'picture', 'slug','role']
 
+class UserSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserSettings
+        fields = '__all__' 
+
 class UserSerializer(UserCreateSerializer):
   class Meta(UserCreateSerializer.Meta):
     model = UserAccount
-    fields = ['id','first_name', 'last_name' ,'slug','picture','description_en','description_es','created_at','updated_at','email','is_active','role']
+    fields = ['id','first_name', 'last_name' ,'slug','picture','description_en','description_es','created_at','updated_at','email','is_active','role',]
 
 
 
@@ -40,7 +45,3 @@ class CustomUserSerializer(serializers.ModelSerializer):
         print('ful name  here : ')
         return f"{obj.first_name} {obj.last_name}"
     
-class UserSettingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserSettings
-        fields = '__all__' 

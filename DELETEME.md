@@ -6,11 +6,12 @@ For now, I’m organizing my project and using this file as a placeholder.
 
 ## Things I Want to add in My Project
 
-- [ ] Finish this file.
-
   ### Django-bakend:
   - [x] Create a models / apps
-  - [ ] create and test a api view to users settings 
+  - [x] create a api view to users settings 
+  - [ ] test a api view to users settings
+  - [x] Update the user serilizer to show users settings 
+  - [ ] make a diference bettwen  the  shasboard serielizer and principal serializer
   - [ ] create and test a api view to message
   - [ ] create and test a api view to notifications 
   - [ ] create and test a api view to users profile
@@ -24,9 +25,17 @@ For now, I’m organizing my project and using this file as a placeholder.
   - [ ] give style to profile page
 
   ### Dashboard:
+  - [x] make path url to show the current path in the dashboard with a button to go
   - [ ] give style to users page
   - [ ] home 
   - [ ] settings 
+  - [x] make 2 themes(for  now)
+  - [x] get the user settings from the backend
+  - [x] make the full themes 
+  - [x] make an interface to make change the themes
+  - [ ] allow to save the setings preferences  in the backend
+  - [ ] make an interface to make change the user settings
+  - [x] add the themes from the  database
   - [ ] users
   - [ ] projects
   - [ ] posts

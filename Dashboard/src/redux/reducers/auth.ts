@@ -13,13 +13,30 @@ import  {
   REFRESH_SUCCESS,
   USER_LOADED_SUCCESS,
   USER_LOADED_FAIL,
-  REMOVE_AUTH_LOADING
+  REMOVE_AUTH_LOADING,
+  FETCH_USER_SETTINGS_SUCCESS,
+  FETCH_USER_SETTINGS_FAIL,
+  UPDATE_USER_SETTINGS_SUCCESS,
+  UPDATE_USER_SETTINGS_FAIL,
+  FETCH_ALL_USER_SETTINGS_SUCCESS,
+  FETCH_ALL_USER_SETTINGS_FAIL,
 }from  '../actions/auth/type'
 
 interface AuthState {
   access: string | null;
   refresh: string | null;
-  user: { id: number; alias: string; email: string; first_name: string; last_name: string } | null;
+  user: { 
+    id: number; 
+    alias: string; 
+    email: string; 
+    first_name: string; 
+    last_name: string } | null;
+  user_settings :{
+    theme: string;
+    email_notifications: boolean;
+    push_notifications: boolean;
+    updated_at: string;
+  } | null;
   loading: boolean;
   user_loading : boolean;
   picture: string|null;
@@ -31,6 +48,7 @@ const initialState:AuthState = {
   access : localStorage.getItem('access'),
   refresh : localStorage.getItem('refresh'),
   user : null,
+  user_settings:null,
   loading : false,
   user_loading : false,
   error : null,
@@ -38,13 +56,22 @@ const initialState:AuthState = {
   picture:null,
 }
 
-
 type AuthAction = {
   type: string;
   payload:{
-  access: string;
-  refresh: string;
-  user: { id: number; alias: string; email: string; first_name: string; last_name: string } | null;
+    access: string;
+    refresh: string;
+    user: { 
+      id: number; 
+      alias: string; 
+      email: string; 
+      first_name: string; 
+      last_name: string } | null;
+    userSettings:{
+      theme: string;
+      email_notifications: boolean;
+      push_notifications: boolean;
+      updated_at: string;}|null; 
   };
 };
 
@@ -66,7 +93,12 @@ const authReducer = (state: AuthState = initialState, action: AuthAction): AuthS
       isAuthenticated: false, 
       user_loading : false,
       };
-
+    case FETCH_USER_SETTINGS_SUCCESS:
+      console.log('FETCH_USER_SETTINGS_SUCCESS',payload.userSettings)
+      return { ...state,
+        user_settings: payload.userSettings, };
+    case FETCH_USER_SETTINGS_FAIL:
+        return { ...state, user_settings: null};
     case SET_AUTH_LOADING:
       return { ...state, loading: true, error: null };
       

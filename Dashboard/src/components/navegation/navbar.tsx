@@ -31,8 +31,8 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
   const location = useLocation();
   const handleLogout = () => {logout(); };
   return(
-    <div className="w-full nav-bar h-[75px] side-bar rounded-br-3xl flex items-center p-2  justify-between ">
-      <div className="search-filt__input h-full  flex items-center gap-0 w-3/5 ">
+    <div className="w-full nav-bar h-[75px] side-bar rounded-br-3xl flex items-center p-2  justify-between">
+      <div className="search-filt__input h-full  flex items-center gap-1 w-3/5 ">
         <input type="text" placeholder="Search" id='search-bar' 
         className="h-4/5  rounded-l-lg w-full px-4 m-2  mr-0"/>
 
@@ -41,12 +41,12 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
         </button>
       </div>
       <div className="flex gap-8">
-        <button className="relative w-[60px] h-[60px]  rounded-full flex items-center content-center justify-center side-bar__item"
+        <button className="relative w-[60px] h-[60px]   rounded-full flex items-center content-center justify-center side-bar__item text-[--bar-text]"
         onClick={notification_menu }>
           <MdNotificationsActive size={34}/>
           <span className="notification-card__count absolute bg-red-600 rounded-full w-[25px] h-[25px] top-0 right-0"> 5 </span>
         </button>
-        <div className={`notification-card  absolute rounded t-[100%] bg-[--side-bg-1] w-[300px] max-h-96 top-[90px] opacity-0 text-center transition-all duration-[1250ms] ${notif?' right-[35px] opacity-95':' opacity-0 right-[-300px]'}`}>
+        <div className={`notification-card  z-30 absolute rounded t-[100%] bg-[--bar-btn] w-[300px] max-h-96 top-[90px] opacity-0 text-center transition-all duration-[1250ms] ${notif?' right-[35px] opacity-95':' opacity-0 right-[-300px]'}`}>
           <div className=" absolute rounded-full bg-red-600  w-[25px] h-[25px] top-[-10px] right-[-10px] hover:bg-red-500 active:bg-red-600 cursor-pointer cursor-pointer"
             onClick={()=>setNotif(false)}
             >X</div>
@@ -54,19 +54,19 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
           <div className="notification-card__content">You have 5 unread notifications</div>
           {/* here request notifications (request from the data base) */}
         </div>
-        <button className="w-[60px] h-[60px] bg-sky-500 rounded-full flex items-center justify-center overflow-hidden side-bar__item "
+        <button className="w-[60px] h-[60px] rounded-full flex items-center justify-center overflow-hidden side-bar__item "
         onClick={porfile_menu}  >
           {img?<img src={img} /> : <CgProfile className="w-[100%] h-[100%]"/>}
         </button>
-        <div className={`porfile-card absolute rounded t-[100%] bg-[--side-bg-1] w-[300px] max-h-96  text-center top-[90px] flex flex-col transition-all duration-[1250ms] min-h-[55px] ${porfile?' right-[35px] opacity-95':' opacity-0 right-[-300px]'} `}
+        <div className={`porfile-card z-30 absolute rounded t-[100%] bg-[--bar-btn] w-[300px] max-h-96  text-center top-[90px] flex flex-col transition-all duration-[1250ms] min-h-[55px] ${porfile?' right-[35px] opacity-95':' opacity-0 right-[-300px]'} `}
         >
           <div className=" absolute rounded-full bg-red-600  w-[25px] h-[25px] top-[-10px] right-[-10px] hover:bg-red-500 active:bg-red-600 cursor-pointer"
           onClick={()=>setPorfile(false)}
           >X</div>
-          <div className={`h-[50px] profile-option m-[5px] hover:bg-[--side-bg-2] active:bg-[--side-bg-3] rounded select-none ${location.pathname.endsWith('/my_porfile') ? 'hidden' : ''}`}>
+          <div className={`h-[50px] profile-option m-[5px] side-bar__item rounded select-none ${location.pathname.endsWith('/my_porfile') ? 'hidden' : ''}`}>
           <button className={`p-[10px] w-full h-full ${porfile?'block':'hidden'} `}
           onClick={() => navigate('/my_porfile')}> your-porfile</button> </div>
-          <div className={`h-[50px] profile-option m-[5px] hover:bg-[--side-bg-2] active:bg-[--side-bg-3]  rounded select-none`}>
+          <div className={`h-[50px] profile-option m-[5px] side-bar__item rounded select-none`}>
           <button className={`p-[10px] w-full h-full  ${porfile?'block':'hidden'} `}
           onClick={handleLogout}> logout </button></div>
         </div>

@@ -75,7 +75,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD=  'email'
     REQUIRED_FIELDS= ['first_name','last_name', 'slug']
-
+    
     objects = UserManager()
 
     def __str__(self):
@@ -100,11 +100,11 @@ class UserSettings(models.Model):
     )
     theme = models.CharField(
         max_length=20,
-        choices=[('light', 'Light'), ('dark', 'Dark')],
+        choices=[('light1', 'Light1'), ('light2', 'Light2'), ('dark1', 'Dark1'), ('darks2', 'Dark2')],
         default='light')
     email_notifications = models.BooleanField(default=False)
     push_notifications = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Settings for {self.user.username}"
+        return f"Settings for {self.user.first_name} {self.user.last_name}"

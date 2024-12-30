@@ -23,3 +23,9 @@ class UserAdmin(admin.ModelAdmin):
     filter_horizontal = ('groups', 'user_permissions')
 
 admin.site.register(UserAccount, UserAdmin)
+
+@admin.register(UserSettings)
+class UserSettingsAdmin(admin.ModelAdmin):
+    list_display = ('user', 'theme', 'email_notifications', 'push_notifications', 'updated_at')
+    search_fields = ('user__username', 'user__email')
+    list_filter = ('theme', 'email_notifications', 'push_notifications')

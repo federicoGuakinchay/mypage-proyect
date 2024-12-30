@@ -25,7 +25,7 @@ type CarouselProps = {
 function Carousel({ ITEMS }: CarouselProps) {
   if (!ITEMS || ITEMS.length === 0) {
     return (
-      <div className="carrousel_empty text-xl font-semibold h-[150px] w-[300px] flex justify-center items-center bg-[--side-bg-2] rounded-2xl  mb-[25px]">
+      <div className="carrousel_empty text-xl font-semibold h-[150px] w-[300px] flex justify-center items-center item rounded-2xl  mb-[25px]">
         <h2 >Not items yet</h2>
       </div>
     );

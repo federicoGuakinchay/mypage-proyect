@@ -13,7 +13,13 @@ import{
   USER_LOADED_SUCCESS,
   USER_LOADED_FAIL,
   REMOVE_AUTH_LOADING,
-  AUTHENTICATED_SUCCESS
+  AUTHENTICATED_SUCCESS,
+  FETCH_USER_SETTINGS_SUCCESS,
+  FETCH_USER_SETTINGS_FAIL,
+  UPDATE_USER_SETTINGS_SUCCESS,
+  UPDATE_USER_SETTINGS_FAIL,
+  FETCH_ALL_USER_SETTINGS_SUCCESS,
+  FETCH_ALL_USER_SETTINGS_FAIL,
 } from './type'
 import axios from "axios";
 import  { App_Dispatch , AppThunk  } from "@store";
@@ -166,6 +172,8 @@ export const reset_password_confirm  = (uid:string,token:string,new_password:str
 
 export const logout = ():AppThunk =>  async (dispatch: App_Dispatch) =>{
   dispatch({type: LOGOUT})
+  localStorage.removeItem('access');
+  localStorage.removeItem('refresh');
 }
 
 export const load_user = ():AppThunk => async (dispatch : App_Dispatch)=>{
@@ -188,5 +196,20 @@ export const load_user = ():AppThunk => async (dispatch : App_Dispatch)=>{
       console.log(err)
       dispatch({type: USER_LOADED_FAIL});
     }
+    try {
+      const settingsResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/user-settings/`, config);
+      if (settingsResponse.status === 200) {
+        dispatch({
+          type: FETCH_USER_SETTINGS_SUCCESS,
+          payload: { userSettings: settingsResponse.data },
+        });
+        } else {
+          dispatch({ type: FETCH_USER_SETTINGS_FAIL });
+        }
+    }catch(err){
+    console.log(err)
+    dispatch({type: FETCH_USER_SETTINGS_FAIL});
+    throw err;
+  }
   }else{ dispatch({type:USER_LOADED_FAIL}) }
 }

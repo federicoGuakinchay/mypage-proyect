@@ -1,7 +1,5 @@
 import { useState , useEffect} from 'react';
 
-globalThis.side_menu_open = false; // Initialize the global variable
-
 const AppIcon: React.FC = () => {
   const [menu, setMenu] = useState(globalThis.side_menu_open); // Initialize state from the global variable
 
@@ -25,11 +23,11 @@ const AppIcon: React.FC = () => {
         role="button"
       >
         
-        <div className="flex flex-col text-center w-[65px] h-[65px]   rounded-3xl bg-[#000] relative z-10 justify-center ">
+        <div className="flex flex-col text-center w-[65px] h-[65px]   rounded-3xl bg-[#000] text-[#fff] relative z-10 justify-center ">
           <p className="text-l font-bold leading-none select-none">ONLY</p>
           <p className="text-l font-bold leading-none select-none">ONE</p>
         </div>
-        <div className={`flex flex-col text-center top-[0px] left-[-5px] px-2 py-4 h-[65px] absolute rounded-3xl bg-[#fff] z-0 truncate text-black text-right trancition-all duration-700 w-full`} >
+        <div className={`flex flex-col text-center top-[0px] left-[-5px] px-2 py-4 h-[65px] absolute text-[#000]   rounded-3xl bg-[#fff] z-0 truncate text-right trancition-all duration-700 w-full`} >
           <p className="text-l font-bold leading-none select-none">ANOTHER</p>
           <p className="text-l font-bold leading-none select-none">DASHBOARD</p>
         </div>

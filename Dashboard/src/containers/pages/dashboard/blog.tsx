@@ -1,14 +1,10 @@
-import SideBar from "../../../components/navegation/sidebar"
-import NavBar from "../../../components/navegation/navbar"
-import MyFooter from "../../../components/myfooter"
-import Layout from "../../../hocs/layouts/logout_layout"
-
 import { useEffect } from "react"
 import { get_categories } from "../../../redux/actions/blog_categories/blogcategories"
 import { connect, ConnectedProps } from 'react-redux';
 import { get_author_blog_list , get_author_blog_list_page } from "../../../redux/actions/blog/blog"
 import { RootState } from '@redux/reducers';
-import RouteName from "../../../components/route_name"
+
+import DashboardTemplate from "../DashboardTemplate"
 
 // Define types for your state and action props
 const mapStateToProps = (state: RootState) => ({
@@ -52,23 +48,11 @@ const Blog: React.FC<BlogProps> = ({
     get_author_blog_list();
   }, [get_categories, get_author_blog_list]);
   return (
-    <Layout>
-    <div className="h-dvh w-dvw flex bg-content ">
-      <SideBar />
-      <div className="h-full w-dvw flex flex-col ">
-        <NavBar />
-        <main className="h-4/5 w-full p-2 overflow-y-auto scrollbar-thin  overflow-x-hidden scrollbar-thumb-blue-500 scrollbar-track-gray-100">
-          <div className="h-full w-full flex flex-col  items-center "> 
-            <RouteName/>
-            <div className="flex  w-full justify-end mb-[25px] ">
-              <button className="button-add" >add a new Blog</button>
-            </div>
-          </div>
-        </main>
-        <MyFooter   />
-      </div>
+  <DashboardTemplate>
+    <div className="flex  w-full justify-end mb-[25px] ">
+      <button className="button-add" >add a new Blog</button>
     </div>
-    </Layout>
+  </DashboardTemplate>
   )
 }
 
