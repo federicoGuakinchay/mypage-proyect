@@ -42,21 +42,33 @@ const Layout: React.FC<LayoutProps> = ({
   }, [isAuthenticated, check_authenticated, refresh, navigate]);
 
   useEffect(() => {
-    // Load user data if authenticated but not already loaded
+    let isMounted = true; // Flag to prevent updates if unmounted
+  
     const handleUserRefresh = async () => {
       if (user === null && isAuthenticated) {
         try {
           console.log('User is authenticated but not loaded. Refreshing user data.');
-          await refresh();{navigate('/home')}
+          await refresh(); // Fetch and update user data
+          if (isMounted) {
+            navigate('/home'); // Redirect to home only if still mounted
+          }
         } catch (error) {
           console.error('Failed to refresh user data. Logging out.', error);
-          logout()
-          navigate('/login');
+          if (isMounted) {
+            logout(); // Logout the user
+            navigate('/login'); // Redirect to login
+          }
         }
       }
-    }
+    };
+  
     handleUserRefresh();
-  },[user, isAuthenticated, refresh, navigate,logout]);
+  
+    return () => {
+      isMounted = false; // Cleanup on component unmount
+    };
+  }, [user, isAuthenticated, refresh, logout, navigate]);
+  
 
   return <>{children}</>;
 };

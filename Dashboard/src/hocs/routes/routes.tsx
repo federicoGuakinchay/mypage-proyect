@@ -5,6 +5,7 @@ import Blog from '../../containers/pages/dashboard/blog';
 import Project from '../../containers/pages/dashboard/project';
 import Users from '../../containers/pages/dashboard/users';
 import Calendar from '../../containers/pages/dashboard/clendar';
+import Messages from '../../containers/pages/dashboard/messages';
 import Task from '../../containers/pages/dashboard/task';
 import Settings from '../../containers/pages/dashboard/settings';
 import MyPorfile from '../../containers/pages/dashboard/my_porfile';
@@ -35,6 +36,8 @@ function AppRoutes() {
           <Route path="/calendar" element={<Calendar />} />
           {/* Task Page */}
           <Route path="/task" element={<Task/>} />
+          {/* Messages Page */}
+          <Route path="/messages" element={<Messages/>} />
           {/* Settings Page */}
           <Route path="/settings" element={<Settings/>} />
           {/* my porfile Page */}

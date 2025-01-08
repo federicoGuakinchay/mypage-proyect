@@ -21,32 +21,57 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
 
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(isAuthenticated)
-    if (!isAuthenticated) {
-      const accessToken =  localStorage.getItem("access");
-      const refreshToken = localStorage.getItem("refresh");
 
-      if (accessToken) {
-        check_authenticated();
-      } else if (refreshToken) {
-        refresh();
-      } else {
-        navigate("/logout");
+  useEffect(() => {
+    const handleAuthentication = async () => {
+      console.log("Is Authenticated:", isAuthenticated);
+  
+      if (isAuthenticated === false) {
+        const accessToken = localStorage.getItem("access");
+        const refreshToken = localStorage.getItem("refresh");
+  
+        console.log("Access Token:", accessToken);
+        console.log("Refresh Token:", refreshToken);
+  
+        if (accessToken) {
+          try {
+            await check_authenticated();
+            console.log('check_authenticated')
+          } catch (error) {
+            console.error("Error during check_authenticated:", error);
+            navigate("/logout"); // Redirect on failure
+          }
+        } else if (refreshToken) {
+          try {
+            await refresh();
+            console.log('refreshToken')
+          } catch (error) {
+            console.error("Error during refresh:", error);
+            navigate("/logout"); // Redirect on failure
+          }
+        } else {
+          console.log("No valid tokens. Redirecting to logout.");
+          navigate("/logout");
+        }
       }
-    }
+    };
+  
+    handleAuthentication();
   }, [isAuthenticated, check_authenticated, refresh, navigate]);
   
   useEffect(() => {
-    if (user === null && isAuthenticated) {
-      try {
-        load_user();
-      } catch (error) {
-        console.error("Failed to load user",error);
-        logout();
-        navigate("/logout");
+    const loaddingUser = async () => {
+      if (user === null && isAuthenticated) {
+        try {
+          await load_user();
+        } catch (error) {
+          console.error("Failed to load user",error);
+          logout();
+          navigate("/logout");
+        }
+      }
     }
-  }
+    loaddingUser()
   }, [user, isAuthenticated, load_user, logout, navigate]);
 
   return (

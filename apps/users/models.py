@@ -100,7 +100,7 @@ class UserSettings(models.Model):
     )
     theme = models.CharField(
         max_length=20,
-        choices=[('light1', 'Light1'), ('light2', 'Light2'), ('dark1', 'Dark1'), ('darks2', 'Dark2')],
+        choices=[('light1', 'Light1'), ('light2', 'Light2'), ('dark1', 'Dark1'), ('dark2', 'Dark2')],
         default='light')
     email_notifications = models.BooleanField(default=False)
     push_notifications = models.BooleanField(default=True)

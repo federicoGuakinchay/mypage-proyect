@@ -17,13 +17,13 @@
 [data-mode="light2"] {
   /*bar - colors */
   --bar-bg           :#800;
-  --btn-out          :#fff;
+  --btn-out          :#800;
   --bar-btn-text     :#fff;
   --bar-btn          :#800;
   --bar-btn-hover    :#f00;
   --bar-btn-active   :#f55;
   --bar-btn-select   :#fff;
-  --bar-btn-select-tx:#111;
+  --bar-btn-select-tx:#504949;
   /* search */
   --search-bar-text  :#333;
   --search-bar-bg    :#fff;

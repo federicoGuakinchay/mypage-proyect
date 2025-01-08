@@ -1,4 +1,5 @@
 import { BsSearch } from "react-icons/bs";
+import { IoMailOutline } from "react-icons/io5";
 import { MdNotificationsActive } from "react-icons/md";
 import { useState} from "react";
 import { useNavigate , useLocation } from 'react-router-dom';
@@ -17,14 +18,22 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
   console.log(img)
 
   const [notif , setNotif ] = useState(false) 
+  const [messageM , setMessageM ] = useState(false) 
   const [porfile , setPorfile] = useState(false)
 
+  const message_menu = ()=>{
+    if (porfile===true) setPorfile(false); 
+    if (notif===true) setNotif(false);
+      setMessageM(!messageM)
+  }
   const notification_menu = ()=>{
-    if (porfile===true) setPorfile(false)
+    if (porfile===true) setPorfile(false);
+    if (messageM===true) setMessageM(false);
     setNotif(!notif)
   }
   const porfile_menu = ()=>{
-    if (notif===true) setNotif(false)
+    if (notif===true) setNotif(false);
+    if (messageM===true) setMessageM(false);
     setPorfile(!porfile)
   }
   const navigate = useNavigate();
@@ -41,6 +50,27 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
         </button>
       </div>
       <div className="flex gap-8">
+
+
+
+
+        <button className="relative w-[60px] h-[60px]   rounded-full flex items-center content-center justify-center side-bar__item text-[--bar-text]"
+        onClick={message_menu }>
+          <IoMailOutline size={34}/>
+          <span className="notification-card__count absolute bg-red-600 rounded-full w-[25px] h-[25px] top-0 right-0"> 5 </span>
+        </button>
+        <div className={`notification-card  z-30 absolute rounded t-[100%] bg-[--bar-btn] w-[300px] max-h-96 top-[90px] opacity-0 text-center transition-all duration-[1250ms] ${messageM?' right-[35px] opacity-95':' opacity-0 right-[-300px]'}`}>
+          <div className=" absolute rounded-full bg-red-600  w-[25px] h-[25px] top-[-10px] right-[-10px] hover:bg-red-500 active:bg-red-600 cursor-pointer cursor-pointer"
+            onClick={()=>setMessageM(false)}
+            >X</div>
+          <div className="notification-card__title">Messages </div>
+          <div className="notification-card__content">You have 5 unread messages</div>
+          {/* here request notifications (request from the data base) */}
+        </div>
+
+
+
+
         <button className="relative w-[60px] h-[60px]   rounded-full flex items-center content-center justify-center side-bar__item text-[--bar-text]"
         onClick={notification_menu }>
           <MdNotificationsActive size={34}/>
@@ -54,7 +84,10 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
           <div className="notification-card__content">You have 5 unread notifications</div>
           {/* here request notifications (request from the data base) */}
         </div>
-        <button className="w-[60px] h-[60px] rounded-full flex items-center justify-center overflow-hidden side-bar__item "
+
+
+        
+        <button className="w-[60px] h-[60px] rounded-full flex items-center justify-center overflow-hidden side-bar__item hover:brightness-150 active:brightness-200"
         onClick={porfile_menu}  >
           {img?<img src={img} /> : <CgProfile className="w-[100%] h-[100%]"/>}
         </button>
@@ -69,6 +102,8 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
           <div className={`h-[50px] profile-option m-[5px] side-bar__item rounded select-none`}>
           <button className={`p-[10px] w-full h-full  ${porfile?'block':'hidden'} `}
           onClick={handleLogout}> logout </button></div>
+
+  
         </div>
       </div>
     </div>
