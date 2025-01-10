@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({
     let isMounted = true; // Flag to prevent updates if unmounted
   
     const handleUserRefresh = async () => {
-      if (user === null && isAuthenticated) {
+      if ( user === null && isAuthenticated ) {
         try {
           console.log('User is authenticated but not loaded. Refreshing user data.');
           await refresh(); // Fetch and update user data

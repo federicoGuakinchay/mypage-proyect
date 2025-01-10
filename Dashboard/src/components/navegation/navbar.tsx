@@ -57,7 +57,7 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
         <button className="relative w-[60px] h-[60px]   rounded-full flex items-center content-center justify-center side-bar__item text-[--bar-text]"
         onClick={message_menu }>
           <IoMailOutline size={34}/>
-          <span className="notification-card__count absolute bg-red-600 rounded-full w-[25px] h-[25px] top-0 right-0"> 5 </span>
+          <span className="notification-card__count absolute bg-red-600 rounded-full w-[25px] h-[25px] top-1 right-0"> 5 </span>
         </button>
         <div className={`notification-card  z-30 absolute rounded t-[100%] bg-[--bar-btn] w-[300px] max-h-96 top-[90px] opacity-0 text-center transition-all duration-[1250ms] ${messageM?' right-[35px] opacity-95':' opacity-0 right-[-300px]'}`}>
           <div className=" absolute rounded-full bg-red-600  w-[25px] h-[25px] top-[-10px] right-[-10px] hover:bg-red-500 active:bg-red-600 cursor-pointer cursor-pointer"
@@ -74,7 +74,7 @@ const NavBar: React.FC<NavBarProps> = ({ logout }) => {
         <button className="relative w-[60px] h-[60px]   rounded-full flex items-center content-center justify-center side-bar__item text-[--bar-text]"
         onClick={notification_menu }>
           <MdNotificationsActive size={34}/>
-          <span className="notification-card__count absolute bg-red-600 rounded-full w-[25px] h-[25px] top-0 right-0"> 5 </span>
+          <span className="notification-card__count absolute bg-red-600 rounded-full w-[25px] h-[25px] top-1 right-0"> 5 </span>
         </button>
         <div className={`notification-card  z-30 absolute rounded t-[100%] bg-[--bar-btn] w-[300px] max-h-96 top-[90px] opacity-0 text-center transition-all duration-[1250ms] ${notif?' right-[35px] opacity-95':' opacity-0 right-[-300px]'}`}>
           <div className=" absolute rounded-full bg-red-600  w-[25px] h-[25px] top-[-10px] right-[-10px] hover:bg-red-500 active:bg-red-600 cursor-pointer cursor-pointer"

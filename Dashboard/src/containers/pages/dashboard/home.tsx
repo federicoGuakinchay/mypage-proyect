@@ -1,4 +1,3 @@
-import Carrousel from "../../../components/carrousel"
 import DashboardTemplate from "../DashboardTemplate"
 
 function Home(){
@@ -10,11 +9,9 @@ function Home(){
     </div>
     <div className="flex flex-col w-full items-center"> 
       <button className="text-3xl self-start mb-2  font-semibold url">My Projects</button>
-      <Carrousel ITEMS={null}/>
     </div>
     <div className="flex flex-col w-full items-center"> 
       <button className="text-3xl self-start mb-2 font-semibold url">My Blogs </button>
-      <Carrousel ITEMS={null}/>
     </div>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur soluta deleniti corporis laborum accusantium, quasi in nemo iure deserunt rem iste, placeat nostrum ut magnam aut assumenda? Consequatur, est molestias!</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur soluta deleniti corporis laborum accusantium, quasi in nemo iure deserunt rem iste, placeat nostrum ut magnam aut assumenda? Consequatur, est molestias!</p>

@@ -24,40 +24,39 @@ const Layout: React.FC<LayoutProps> = ({
 
   useEffect(() => {
     const handleAuthentication = async () => {
-      console.log("Is Authenticated:", isAuthenticated);
+      if (isAuthenticated) {
+        console.log("User is already authenticated.");
+        return;
+      }
   
-      if (isAuthenticated === false) {
-        const accessToken = localStorage.getItem("access");
-        const refreshToken = localStorage.getItem("refresh");
+      const accessToken = localStorage.getItem("access");
+      const refreshToken = localStorage.getItem("refresh");
   
-        console.log("Access Token:", accessToken);
-        console.log("Refresh Token:", refreshToken);
+      console.log("Access Token:", accessToken);
+      console.log("Refresh Token:", refreshToken);
   
+      try {
         if (accessToken) {
-          try {
-            await check_authenticated();
-            console.log('check_authenticated')
-          } catch (error) {
-            console.error("Error during check_authenticated:", error);
-            navigate("/logout"); // Redirect on failure
-          }
+          console.log("Validating access token...");
+          await check_authenticated();
+          console.log("Access token is valid.");
         } else if (refreshToken) {
-          try {
-            await refresh();
-            console.log('refreshToken')
-          } catch (error) {
-            console.error("Error during refresh:", error);
-            navigate("/logout"); // Redirect on failure
-          }
+          console.log("Access token missing. Attempting refresh...");
+          await refresh();
+          console.log("Refresh successful. New tokens acquired.");
         } else {
-          console.log("No valid tokens. Redirecting to logout.");
+          console.warn("No valid tokens found. Redirecting to logout.");
           navigate("/logout");
         }
+      } catch (error: any) {
+        console.error("Authentication error:", error.message || error);
+        navigate("/logout"); // Redirect to logout on failure
       }
     };
   
     handleAuthentication();
   }, [isAuthenticated, check_authenticated, refresh, navigate]);
+  
   
   useEffect(() => {
     const loaddingUser = async () => {

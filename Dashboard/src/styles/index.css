@@ -234,6 +234,10 @@
   color:(var(--item-color));
   cursor: pointer;
   transition: color .6s ,background-color .6s;
+  width: fit-content;
+  border-radius:  1rem;
+  padding: 1rem;
+  margin: 1rem;
   &:hover{ background-color: var(--item-hover); }
   &:active{ background-color: var(--item-active); }
   &:focus,&:focus-visible{ outline: outset var(--btn-out); }
