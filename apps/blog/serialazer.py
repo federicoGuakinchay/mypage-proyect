@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from .models import *
 from apps.blog_categories.serialazer import BlogCategorySerializer
-from ..users.serializers import UserSerializerBlog
+from ..users.serializers import UserCardSerializer_small
 # convert the info to JSON 
 class PostSerializer(serializers.ModelSerializer):
   category = BlogCategorySerializer()
-  author = UserSerializerBlog()
+  author = UserCardSerializer_small()
   class Meta:
     model = Post
     fields = ['id', 
@@ -24,7 +24,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 class PostListSerializer(serializers.ModelSerializer):
   category = BlogCategorySerializer() 
-  author = UserSerializerBlog()
+  author = UserCardSerializer_small()
   class Meta:
     model = Post
     fields=[

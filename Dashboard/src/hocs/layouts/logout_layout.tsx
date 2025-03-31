@@ -38,7 +38,7 @@ const Layout: React.FC<LayoutProps> = ({
       try {
         if (accessToken) {
           console.log("Validating access token...");
-          await check_authenticated();
+          await check_authenticated()
           console.log("Access token is valid.");
         } else if (refreshToken) {
           console.log("Access token missing. Attempting refresh...");

@@ -10,6 +10,7 @@ class Notification(models.Model):
         verbose_name_plural = "Notifications"
 
     NOTIFICATION_TYPES = (
+        ('project_created', 'Project Created'),
         ('project_published', 'Project Published'),
         ('project_updated', 'Project Updated'),
         ('project_deleted', 'Project Deleted'),

@@ -71,6 +71,7 @@ THIRD_PARTY_APPS=[
     'rest_framework_simplejwt.token_blacklist',
     'django_quill',
     'modeltranslation',
+    "phonenumber_field",
 ]
 # All apps
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -89,6 +90,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'apps.middleware.RequestUserMiddleware', 
 ]
 
 ROOT_URLCONF = 'core.urls'

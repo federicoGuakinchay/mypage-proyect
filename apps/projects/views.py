@@ -6,7 +6,7 @@ from apps.projects_categories.models import ProjectsCategory , Language
 from django.db.models import Q
 
 from .serialazer import ProjectsSerializer ,CommentProjectSerializer
-from ..paginator.pagination import SmallSetPagination ,MediumSetPagination, BigSetPagination
+from ..pagintion import SmallSetPagination ,MediumSetPagination, BigSetPagination
 
 class ProjectListViews(APIView):
   permission_classes = [permissions.AllowAny]

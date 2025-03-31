@@ -3,6 +3,7 @@ from .models import *
 
 
 admin.site.register(Project)
+admin.site.register(Client) 
 
 @admin.register(CommentProject)
 class CommentProjectAdmin(admin.ModelAdmin):

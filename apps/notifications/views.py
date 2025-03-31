@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import permissions, status
 from .models import Notification
 from .serializer import NotificationSerializer
-from ..paginator.pagination import  SmallSetPagination
+from ..pagintion import  SmallSetPagination
 
 class NotificationListView(APIView):
     permission_classes = [permissions.IsAuthenticated]

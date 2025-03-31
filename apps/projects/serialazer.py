@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from apps.projects_categories.serialazer import ProjectsCategorySerializer , LanguagesCategorySerializer
-from ..users.serializers import UserSerializerBlog
+from ..users.serializers import UserCardSerializer_small
 # convert the info to JSON 
 
 class CommentProjectSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class CommentProjectSerializer(serializers.ModelSerializer):
 class ProjectsSerializer(serializers.ModelSerializer):
   categories = ProjectsCategorySerializer(many=True)
   languages = LanguagesCategorySerializer(many=True)
-  author = UserSerializerBlog()
+  author = UserCardSerializer_small()
   class Meta:
     model = Project
     fields = [

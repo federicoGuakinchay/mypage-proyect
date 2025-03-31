@@ -6,8 +6,7 @@ from apps.blog_categories.models import BlogCategory
 from django.db.models import Q
 
 from .serialazer import PostSerializer , PostListSerializer,CommentPostSerializer
-from .pagination import SmallSetPagination ,MediumSetPagination, BigSetPagination
-
+from ..pagintion import SmallSetPagination ,MediumSetPagination, BigSetPagination
 class BlogListViews(APIView):
   permission_classes = [permissions.AllowAny]
   def get(self,request,format=None):
